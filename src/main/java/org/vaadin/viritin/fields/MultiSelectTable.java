@@ -17,6 +17,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import org.vaadin.viritin.ListContainer;
+import org.vaadin.viritin.fluency.ui.FluentCustomField;
 
 /**
  * A Table that can be used as a field to modify List&gt;YourDomainObject&lt; or
@@ -32,7 +33,8 @@ import org.vaadin.viritin.ListContainer;
  * @author Matti Tahvonen
  * @param <ET> The type in the entity collection
  */
-public class MultiSelectTable<ET> extends CustomField<Collection> {
+public class MultiSelectTable<ET> extends 
+        FluentCustomField<MultiSelectTable<ET>, Collection> {
 
     private String[] visProps;
     private String[] pendingHeaders;
@@ -353,37 +355,11 @@ public class MultiSelectTable<ET> extends CustomField<Collection> {
     }
 
     public MultiSelectTable<ET> withFullWidth() {
-        setWidth(100, Unit.PERCENTAGE);
-        return this;
-    }
-
-    public MultiSelectTable<ET> withHeight(String height) {
-        setHeight(height);
-        return this;
+        return withWidthFull();
     }
 
     public MultiSelectTable<ET> withFullHeight() {
-        return withHeight("100%");
-    }
-
-    public MultiSelectTable<ET> withWidth(String width) {
-        setWidth(width);
-        return this;
-    }
-
-    public MultiSelectTable<ET> withCaption(String caption) {
-        setCaption(caption);
-        return this;
-    }
-
-    public MultiSelectTable<ET> withStyleName(String styleName) {
-        setStyleName(styleName);
-        return this;
-    }
-
-    public MultiSelectTable<ET> withIcon(Resource icon) {
-        setIcon(icon);
-        return this;
+        return withHeightFull();
     }
 
     public MultiSelectTable<ET> expand(String... propertiesToExpand) {

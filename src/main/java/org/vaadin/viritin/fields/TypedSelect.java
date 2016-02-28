@@ -4,6 +4,11 @@ import com.vaadin.data.Container;
 import com.vaadin.data.Property;
 import com.vaadin.data.Validator;
 import com.vaadin.data.Validator.InvalidValueException;
+import com.vaadin.data.util.converter.Converter;
+import com.vaadin.event.ContextClickEvent;
+import com.vaadin.event.ShortcutListener;
+import com.vaadin.server.ErrorHandler;
+import com.vaadin.server.ErrorMessage;
 import com.vaadin.server.Resource;
 import com.vaadin.ui.*;
 import org.vaadin.viritin.ListContainer;
@@ -12,6 +17,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
+import org.vaadin.viritin.fluency.ui.FluentAbstractField;
 
 /**
  * A select implementation with better typed API than in core Vaadin.
@@ -30,7 +37,7 @@ import java.util.List;
  * @author mstahv
  * @param <T> the type of selects value
  */
-public class TypedSelect<T> extends CustomField {
+public class TypedSelect<T> extends CustomField implements FluentAbstractField {
 
     private CaptionGenerator<T> captionGenerator;
 
@@ -107,11 +114,6 @@ public class TypedSelect<T> extends CustomField {
     public TypedSelect(String caption, Collection<T> options) {
         this(caption);
         setOptions(options);
-    }
-
-    public TypedSelect<T> withCaption(String caption) {
-        setCaption(caption);
-        return this;
     }
 
     public TypedSelect<T> withSelectType(
@@ -386,40 +388,14 @@ public class TypedSelect<T> extends CustomField {
         return (T) super.getValue();
     }
 
+    /**
+     * An alias for {@link #withWidthFull()}
+     * 
+     * @return This component
+     * @see #withWidthFull() 
+     */
     public TypedSelect<T> withFullWidth() {
-        setWidth("100%");
-        return this;
-    }
-
-    public TypedSelect<T> withReadOnly(boolean readOnly) {
-        setReadOnly(readOnly);
-        return this;
-    }
-
-    public TypedSelect<T> withValidator(Validator validator) {
-        setImmediate(true);
-        addValidator(validator);
-        return this;
-    }
-
-    public TypedSelect<T> withWidth(float width, Unit unit) {
-        setWidth(width, unit);
-        return this;
-    }
-
-    public TypedSelect<T> withWidth(String width) {
-        setWidth(width);
-        return this;
-    }
-
-    public TypedSelect<T> withStyleName(String styleName) {
-        setStyleName(styleName);
-        return this;
-    }
-
-    public TypedSelect<T> withIcon(Resource icon) {
-        setIcon(icon);
-        return this;
+        return withWidthFull();
     }
 
     public void selectFirst() {
@@ -460,6 +436,305 @@ public class TypedSelect<T> extends CustomField {
     @Override
     protected Component initContent() {
         return getSelect();
+    }
+    
+    /* Fluent setters (FluentAbstractComponent): */
+
+    @Override
+    public TypedSelect withStyleName(String style, boolean add) {
+        setStyleName(style, add);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withCaptionAsHtml(boolean captionAsHtml) {
+        setCaptionAsHtml(captionAsHtml);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withLocale(Locale locale) {
+        setLocale(locale);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withImmediate(boolean immediate) {
+        setImmediate(immediate);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withDescription(String description) {
+        setDescription(description);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withComponentError(ErrorMessage componentError) {
+        setComponentError(componentError);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withListener(Listener listener) {
+        addListener(listener);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withData(Object data) {
+        setData(data);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withResponsive(boolean responsive) {
+        setResponsive(responsive);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withShortcutListener(ShortcutListener shortcut) {
+        addShortcutListener(shortcut);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withCaption(String caption) {
+        setCaption(caption);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withEnabled(boolean enabled) {
+        setEnabled(enabled);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withIcon(Resource icon) {
+        setIcon(icon);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withId(String id) {
+        setId(id);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withPrimaryStyleName(String style) {
+        setPrimaryStyleName(style);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withReadOnly(boolean readOnly) {
+        setReadOnly(readOnly);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withStyleName(String style) {
+        setStyleName(style);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withVisible(boolean visible) {
+        setVisible(visible);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withAttachListener(AttachListener listener) {
+        addAttachListener(listener);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withDetachListener(DetachListener listener) {
+        addDetachListener(listener);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withErrorHandler(ErrorHandler errorHandler) {
+        setErrorHandler(errorHandler);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withContextClickListener(ContextClickEvent.ContextClickListener listener) {
+        addContextClickListener(listener);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withHeight(String height) {
+        setHeight(height);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withHeight(float height, Unit unit) {
+        setHeight(height, unit);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withWidth(String width) {
+        setWidth(width);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withWidth(float width, Unit unit) {
+        setWidth(width, unit);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withSizeFull() {
+        setSizeFull();
+        return this;
+    }
+    
+    @Override
+    public TypedSelect withWidthFull() {
+        setWidth(100, Unit.PERCENTAGE);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withHeightFull() {
+        setHeight(100, Unit.PERCENTAGE);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withSizeUndefined() {
+        setSizeUndefined();
+        return this;
+    }
+
+    @Override
+    public TypedSelect withWidthUndefined() {
+        setWidthUndefined();
+        return this;
+    }
+
+    @Override
+    public TypedSelect withHeightUndefined() {
+        setHeightUndefined();
+        return this;
+    }
+    
+    /* Fluent setters (FluentAbstractField): */
+
+    @Override
+    public TypedSelect withInvalidCommitted(boolean isCommitted) {
+        setInvalidCommitted(isCommitted);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withBuffered(boolean buffered) {
+        setBuffered(buffered);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withConverter(Class datamodelType) {
+        setConverter(datamodelType);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withConvertedValue(Object value) {
+        setConvertedValue(value);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withInvalidAllowed(boolean invalidAllowed) throws UnsupportedOperationException {
+        setInvalidAllowed(invalidAllowed);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withTabIndex(int tabIndex) {
+        setTabIndex(tabIndex);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withConversionError(String valueConversionError) {
+        setConversionError(valueConversionError);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withValidationVisible(boolean validateAutomatically) {
+        setValidationVisible(validateAutomatically);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withCurrentBufferedSourceException(SourceException currentBufferedSourceException) {
+        setCurrentBufferedSourceException(currentBufferedSourceException);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withConverter(Converter converter) {
+        setConverter(converter);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withRequired(boolean required) {
+        setRequired(required);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withRequiredError(String requiredMessage) {
+        setRequiredError(requiredMessage);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withValueChangeListener(ValueChangeListener listener) {
+        addValueChangeListener(listener);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withValue(Object newValue) throws ReadOnlyException {
+        setValue(newValue);
+        return this;
+    }
+
+    @SuppressWarnings("rawtypes")
+    @Override
+    public TypedSelect withPropertyDataSource(Property newDataSource) {
+        setPropertyDataSource(newDataSource);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withValidator(Validator validator) {
+        addValidator(validator);
+        return this;
+    }
+
+    @Override
+    public TypedSelect withReadOnlyStatusChangeListener(ReadOnlyStatusChangeListener listener) {
+        addReadOnlyStatusChangeListener(listener);
+        return this;
     }
 
 }

@@ -15,10 +15,16 @@
  */
 package org.vaadin.viritin.fields;
 
-import com.vaadin.data.Item;
+import com.vaadin.data.Property;
+import com.vaadin.data.Validator;
+import com.vaadin.data.util.converter.Converter;
+import com.vaadin.event.ContextClickEvent;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.event.ItemClickEvent.ItemClickListener;
 import com.vaadin.event.MouseEvents;
+import com.vaadin.event.ShortcutListener;
+import com.vaadin.server.ErrorHandler;
+import com.vaadin.server.ErrorMessage;
 import com.vaadin.server.Resource;
 import com.vaadin.shared.MouseEventDetails;
 import com.vaadin.ui.Component;
@@ -32,11 +38,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.EventObject;
+import java.util.Locale;
 import org.apache.commons.lang3.StringUtils;
 import org.vaadin.viritin.LazyList;
 import static org.vaadin.viritin.LazyList.DEFAULT_PAGE_SIZE;
 import org.vaadin.viritin.SortableLazyList;
+import org.vaadin.viritin.fluency.ui.FluentAbstractField;
 
 /**
  * A better typed version of the Table component in Vaadin. Expects that users
@@ -54,7 +61,7 @@ import org.vaadin.viritin.SortableLazyList;
  *
  * @param <T> the type of the POJO listed in this Table.
  */
-public class MTable<T> extends Table {
+public class MTable<T> extends Table implements FluentAbstractField<MTable<T>, Object> {
 
     private ListContainer<T> bic;
     private String[] pendingProperties;
@@ -436,33 +443,8 @@ public class MTable<T> extends Table {
         return this;
     }
 
-    public MTable<T> withHeight(String height) {
-        setHeight(height);
-        return this;
-    }
-
     public MTable<T> withFullHeight() {
-        return withHeight("100%");
-    }
-
-    public MTable<T> withWidth(String width) {
-        setWidth(width);
-        return this;
-    }
-
-    public MTable<T> withCaption(String caption) {
-        setCaption(caption);
-        return this;
-    }
-
-    public MTable<T> withStyleName(String styleName) {
-        setStyleName(styleName);
-        return this;
-    }
-
-    public MTable<T> withIcon(Resource icon) {
-        setIcon(icon);
-        return this;
+        return withHeightFull();
     }
 
     public MTable<T> expand(String... propertiesToExpand) {
@@ -770,5 +752,304 @@ public class MTable<T> extends Table {
         setValue(entity);
         return this;
     }
+    
+    /* Fluent setters (FluentAbstractComponent): */
 
+    @Override
+    public MTable<T> withStyleName(String style, boolean add) {
+        setStyleName(style, add);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withCaptionAsHtml(boolean captionAsHtml) {
+        setCaptionAsHtml(captionAsHtml);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withLocale(Locale locale) {
+        setLocale(locale);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withImmediate(boolean immediate) {
+        setImmediate(immediate);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withDescription(String description) {
+        setDescription(description);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withComponentError(ErrorMessage componentError) {
+        setComponentError(componentError);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withListener(Listener listener) {
+        addListener(listener);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withData(Object data) {
+        setData(data);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withResponsive(boolean responsive) {
+        setResponsive(responsive);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withShortcutListener(ShortcutListener shortcut) {
+        addShortcutListener(shortcut);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withCaption(String caption) {
+        setCaption(caption);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withEnabled(boolean enabled) {
+        setEnabled(enabled);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withIcon(Resource icon) {
+        setIcon(icon);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withId(String id) {
+        setId(id);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withPrimaryStyleName(String style) {
+        setPrimaryStyleName(style);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withReadOnly(boolean readOnly) {
+        setReadOnly(readOnly);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withStyleName(String style) {
+        setStyleName(style);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withVisible(boolean visible) {
+        setVisible(visible);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withAttachListener(AttachListener listener) {
+        addAttachListener(listener);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withDetachListener(DetachListener listener) {
+        addDetachListener(listener);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withErrorHandler(ErrorHandler errorHandler) {
+        setErrorHandler(errorHandler);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withContextClickListener(ContextClickEvent.ContextClickListener listener) {
+        addContextClickListener(listener);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withHeight(String height) {
+        setHeight(height);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withHeight(float height, Unit unit) {
+        setHeight(height, unit);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withWidth(String width) {
+        setWidth(width);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withWidth(float width, Unit unit) {
+        setWidth(width, unit);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withSizeFull() {
+        setSizeFull();
+        return this;
+    }
+    
+    @Override
+    public MTable<T> withWidthFull() {
+        setWidth(100, Unit.PERCENTAGE);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withHeightFull() {
+        setHeight(100, Unit.PERCENTAGE);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withSizeUndefined() {
+        setSizeUndefined();
+        return this;
+    }
+
+    @Override
+    public MTable<T> withWidthUndefined() {
+        setWidthUndefined();
+        return this;
+    }
+
+    @Override
+    public MTable<T> withHeightUndefined() {
+        setHeightUndefined();
+        return this;
+    }
+    
+    /* Fluent setters (FluentAbstractField): */
+
+    @Override
+    public MTable<T> withInvalidCommitted(boolean isCommitted) {
+        setInvalidCommitted(isCommitted);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withBuffered(boolean buffered) {
+        setBuffered(buffered);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withConverter(Class<?> datamodelType) {
+        setConverter(datamodelType);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withConvertedValue(Object value) {
+        setConvertedValue(value);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withInvalidAllowed(boolean invalidAllowed) throws UnsupportedOperationException {
+        setInvalidAllowed(invalidAllowed);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withTabIndex(int tabIndex) {
+        setTabIndex(tabIndex);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withConversionError(String valueConversionError) {
+        setConversionError(valueConversionError);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withValidationVisible(boolean validateAutomatically) {
+        setValidationVisible(validateAutomatically);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withCurrentBufferedSourceException(SourceException currentBufferedSourceException) {
+        setCurrentBufferedSourceException(currentBufferedSourceException);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withConverter(Converter<Object, ?> converter) {
+        setConverter(converter);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withRequired(boolean required) {
+        setRequired(required);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withRequiredError(String requiredMessage) {
+        setRequiredError(requiredMessage);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withValueChangeListener(ValueChangeListener listener) {
+        addValueChangeListener(listener);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withValue(Object newValue) throws ReadOnlyException {
+        setValue(newValue);
+        return this;
+    }
+
+    @SuppressWarnings("rawtypes")
+    @Override
+    public MTable<T> withPropertyDataSource(Property newDataSource) {
+        setPropertyDataSource(newDataSource);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withValidator(Validator validator) {
+        addValidator(validator);
+        return this;
+    }
+
+    @Override
+    public MTable<T> withReadOnlyStatusChangeListener(ReadOnlyStatusChangeListener listener) {
+        addReadOnlyStatusChangeListener(listener);
+        return this;
+    }
+    
 }

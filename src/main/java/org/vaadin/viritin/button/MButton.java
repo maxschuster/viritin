@@ -15,16 +15,22 @@
  */
 package org.vaadin.viritin.button;
 
+import com.vaadin.event.ContextClickEvent;
+import com.vaadin.event.ShortcutListener;
+import com.vaadin.server.ErrorHandler;
+import com.vaadin.server.ErrorMessage;
 import com.vaadin.server.Resource;
 import com.vaadin.shared.MouseEventDetails;
 import com.vaadin.ui.Button;
 import java.util.LinkedHashSet;
+import java.util.Locale;
+import org.vaadin.viritin.fluency.ui.FluentAbstractComponent;
 
 /**
  * An extension to basic Vaadin button that adds some handy constructors and
  * fluent API.
  */
-public class MButton extends Button {
+public class MButton extends Button implements FluentAbstractComponent {
 
     public MButton() {
     }
@@ -46,33 +52,8 @@ public class MButton extends Button {
         super(caption, listener);
     }
 
-    public MButton withIcon(Resource icon) {
-        setIcon(icon);
-        return this;
-    }
-
     public MButton withListener(ClickListener listener) {
         addClickListener(listener);
-        return this;
-    }
-
-    public MButton withStyleName(String styleName) {
-        setStyleName(styleName);
-        return this;
-    }
-
-    public MButton withCaption(String caption) {
-        setCaption(caption);
-        return this;
-    }
-
-    public MButton withDescription(String description) {
-        setDescription(description);
-        return this;
-    }
-
-    public MButton withVisible(boolean visible) {
-        setVisible(visible);
         return this;
     }
 
@@ -114,4 +95,198 @@ public class MButton extends Button {
         return this;
     }
 
+    /* Fluent setters (FluentAbstractComponent): */
+
+    @Override
+    public MButton withStyleName(String style, boolean add) {
+        setStyleName(style, add);
+        return this;
+    }
+
+    @Override
+    public MButton withCaptionAsHtml(boolean captionAsHtml) {
+        setCaptionAsHtml(captionAsHtml);
+        return this;
+    }
+
+    @Override
+    public MButton withLocale(Locale locale) {
+        setLocale(locale);
+        return this;
+    }
+
+    @Override
+    public MButton withImmediate(boolean immediate) {
+        setImmediate(immediate);
+        return this;
+    }
+
+    @Override
+    public MButton withDescription(String description) {
+        setDescription(description);
+        return this;
+    }
+
+    @Override
+    public MButton withComponentError(ErrorMessage componentError) {
+        setComponentError(componentError);
+        return this;
+    }
+
+    @Override
+    public MButton withListener(Listener listener) {
+        addListener(listener);
+        return this;
+    }
+
+    @Override
+    public MButton withData(Object data) {
+        setData(data);
+        return this;
+    }
+
+    @Override
+    public MButton withResponsive(boolean responsive) {
+        setResponsive(responsive);
+        return this;
+    }
+
+    @Override
+    public MButton withShortcutListener(ShortcutListener shortcut) {
+        addShortcutListener(shortcut);
+        return this;
+    }
+
+    @Override
+    public MButton withCaption(String caption) {
+        setCaption(caption);
+        return this;
+    }
+
+    @Override
+    public MButton withEnabled(boolean enabled) {
+        setEnabled(enabled);
+        return this;
+    }
+
+    @Override
+    public MButton withIcon(Resource icon) {
+        setIcon(icon);
+        return this;
+    }
+
+    @Override
+    public MButton withId(String id) {
+        setId(id);
+        return this;
+    }
+
+    @Override
+    public MButton withPrimaryStyleName(String style) {
+        setPrimaryStyleName(style);
+        return this;
+    }
+
+    @Override
+    public MButton withReadOnly(boolean readOnly) {
+        setReadOnly(readOnly);
+        return this;
+    }
+
+    @Override
+    public MButton withStyleName(String style) {
+        setStyleName(style);
+        return this;
+    }
+
+    @Override
+    public MButton withVisible(boolean visible) {
+        setVisible(visible);
+        return this;
+    }
+
+    @Override
+    public MButton withAttachListener(AttachListener listener) {
+        addAttachListener(listener);
+        return this;
+    }
+
+    @Override
+    public MButton withDetachListener(DetachListener listener) {
+        addDetachListener(listener);
+        return this;
+    }
+
+    @Override
+    public MButton withErrorHandler(ErrorHandler errorHandler) {
+        setErrorHandler(errorHandler);
+        return this;
+    }
+
+    @Override
+    public MButton withContextClickListener(ContextClickEvent.ContextClickListener listener) {
+        addContextClickListener(listener);
+        return this;
+    }
+
+    @Override
+    public MButton withHeight(String height) {
+        setHeight(height);
+        return this;
+    }
+
+    @Override
+    public MButton withHeight(float height, Unit unit) {
+        setHeight(height, unit);
+        return this;
+    }
+
+    @Override
+    public MButton withWidth(String width) {
+        setWidth(width);
+        return this;
+    }
+
+    @Override
+    public MButton withWidth(float width, Unit unit) {
+        setWidth(width, unit);
+        return this;
+    }
+
+    @Override
+    public MButton withSizeFull() {
+        setSizeFull();
+        return this;
+    }
+
+    @Override
+    public MButton withSizeUndefined() {
+        setSizeUndefined();
+        return this;
+    }
+    
+    @Override
+    public MButton withWidthFull() {
+        setWidth(100, Unit.PERCENTAGE);
+        return this;
+    }
+
+    @Override
+    public MButton withHeightFull() {
+        setHeight(100, Unit.PERCENTAGE);
+        return this;
+    }
+
+    @Override
+    public MButton withWidthUndefined() {
+        setWidthUndefined();
+        return this;
+    }
+
+    @Override
+    public MButton withHeightUndefined() {
+        setHeightUndefined();
+        return this;
+    }
+    
 }

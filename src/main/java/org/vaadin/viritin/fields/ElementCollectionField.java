@@ -1,6 +1,14 @@
 package org.vaadin.viritin.fields;
 
+import com.vaadin.data.Property;
+import com.vaadin.data.Validator;
+import com.vaadin.data.util.converter.Converter;
+import com.vaadin.event.ContextClickEvent;
+import com.vaadin.event.ShortcutListener;
+import com.vaadin.server.ErrorHandler;
+import com.vaadin.server.ErrorMessage;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.server.Resource;
 import com.vaadin.ui.AbstractField;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -10,7 +18,9 @@ import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.themes.ValoTheme;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.vaadin.viritin.MBeanFieldGroup;
@@ -316,8 +326,242 @@ public class ElementCollectionField<ET> extends AbstractElementCollection<ET> {
     }
 
     public ElementCollectionField<ET> withFullWidth() {
-        setWidth(100, Unit.PERCENTAGE);
-        return this;
+        return withWidthFull();
+    }
+
+    @Override
+    public ElementCollectionField<ET> withValidator(Validator validator) {
+        return (ElementCollectionField<ET>) super.withValidator(validator);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withPropertyDataSource(Property newDataSource) {
+        return (ElementCollectionField<ET>) super.withPropertyDataSource(newDataSource);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withValue(Collection newValue) throws ReadOnlyException {
+        return (ElementCollectionField<ET>) super.withValue(newValue);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withValueChangeListener(ValueChangeListener listener) {
+        return (ElementCollectionField<ET>) super.withValueChangeListener(listener);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withRequiredError(String requiredMessage) {
+        return (ElementCollectionField<ET>) super.withRequiredError(requiredMessage);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withRequired(boolean required) {
+        return (ElementCollectionField<ET>) super.withRequired(required);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withConverter(Converter<Collection, ?> converter) {
+        return (ElementCollectionField<ET>) super.withConverter(converter);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withCurrentBufferedSourceException(SourceException currentBufferedSourceException) {
+        return (ElementCollectionField<ET>) super.withCurrentBufferedSourceException(currentBufferedSourceException);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withValidationVisible(boolean validateAutomatically) {
+        return (ElementCollectionField<ET>) super.withValidationVisible(validateAutomatically);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withConversionError(String valueConversionError) {
+        return (ElementCollectionField<ET>) super.withConversionError(valueConversionError);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withTabIndex(int tabIndex) {
+        return (ElementCollectionField<ET>) super.withTabIndex(tabIndex);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withInvalidAllowed(boolean invalidAllowed) throws UnsupportedOperationException {
+        return (ElementCollectionField<ET>) super.withInvalidAllowed(invalidAllowed);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withConvertedValue(Object value) {
+        return (ElementCollectionField<ET>) super.withConvertedValue(value);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withConverter(Class<?> datamodelType) {
+        return (ElementCollectionField<ET>) super.withConverter(datamodelType);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withBuffered(boolean buffered) {
+        return (ElementCollectionField<ET>) super.withBuffered(buffered);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withInvalidCommitted(boolean isCommitted) {
+        return (ElementCollectionField<ET>) super.withInvalidCommitted(isCommitted);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withHeightUndefined() {
+        return (ElementCollectionField<ET>) super.withHeightUndefined();
+    }
+
+    @Override
+    public ElementCollectionField<ET> withWidthUndefined() {
+        return (ElementCollectionField<ET>) super.withWidthUndefined();
+    }
+
+    @Override
+    public ElementCollectionField<ET> withSizeUndefined() {
+        return (ElementCollectionField<ET>) super.withSizeUndefined();
+    }
+
+    @Override
+    public ElementCollectionField<ET> withHeightFull() {
+        return (ElementCollectionField<ET>) super.withHeightFull();
+    }
+
+    @Override
+    public ElementCollectionField<ET> withWidthFull() {
+        return (ElementCollectionField<ET>) super.withWidthFull();
+    }
+
+    @Override
+    public ElementCollectionField<ET> withSizeFull() {
+        return (ElementCollectionField<ET>) super.withSizeFull();
+    }
+
+    @Override
+    public ElementCollectionField<ET> withWidth(float width, Unit unit) {
+        return (ElementCollectionField<ET>) super.withWidth(width, unit);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withWidth(String width) {
+        return (ElementCollectionField<ET>) super.withWidth(width);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withHeight(float height, Unit unit) {
+        return (ElementCollectionField<ET>) super.withHeight(height, unit);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withHeight(String height) {
+        return (ElementCollectionField<ET>) super.withHeight(height);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withContextClickListener(ContextClickEvent.ContextClickListener listener) {
+        return (ElementCollectionField<ET>) super.withContextClickListener(listener);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withErrorHandler(ErrorHandler errorHandler) {
+        return (ElementCollectionField<ET>) super.withErrorHandler(errorHandler);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withDetachListener(DetachListener listener) {
+        return (ElementCollectionField<ET>) super.withDetachListener(listener);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withAttachListener(AttachListener listener) {
+        return (ElementCollectionField<ET>) super.withAttachListener(listener);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withVisible(boolean visible) {
+        return (ElementCollectionField<ET>) super.withVisible(visible);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withStyleName(String style) {
+        return (ElementCollectionField<ET>) super.withStyleName(style);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withReadOnly(boolean readOnly) {
+        return (ElementCollectionField<ET>) super.withReadOnly(readOnly);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withPrimaryStyleName(String style) {
+        return (ElementCollectionField<ET>) super.withPrimaryStyleName(style);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withId(String id) {
+        return (ElementCollectionField<ET>) super.withId(id);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withIcon(Resource icon) {
+        return (ElementCollectionField<ET>) super.withIcon(icon);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withEnabled(boolean enabled) {
+        return (ElementCollectionField<ET>) super.withEnabled(enabled);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withShortcutListener(ShortcutListener shortcut) {
+        return (ElementCollectionField<ET>) super.withShortcutListener(shortcut);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withResponsive(boolean responsive) {
+        return (ElementCollectionField<ET>) super.withResponsive(responsive);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withData(Object data) {
+        return (ElementCollectionField<ET>) super.withData(data);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withListener(Listener listener) {
+        return (ElementCollectionField<ET>) super.withListener(listener);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withComponentError(ErrorMessage componentError) {
+        return (ElementCollectionField<ET>) super.withComponentError(componentError);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withDescription(String description) {
+        return (ElementCollectionField<ET>) super.withDescription(description);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withImmediate(boolean immediate) {
+        return (ElementCollectionField<ET>) super.withImmediate(immediate);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withLocale(Locale locale) {
+        return (ElementCollectionField<ET>) super.withLocale(locale);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withCaptionAsHtml(boolean captionAsHtml) {
+        return (ElementCollectionField<ET>) super.withCaptionAsHtml(captionAsHtml);
+    }
+
+    @Override
+    public ElementCollectionField<ET> withStyleName(String style, boolean add) {
+        return (ElementCollectionField<ET>) super.withStyleName(style, add);
     }
 
 }

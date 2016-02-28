@@ -19,13 +19,19 @@ import com.vaadin.data.Property;
 import com.vaadin.data.Validator;
 import com.vaadin.data.util.converter.Converter;
 import com.vaadin.data.util.converter.ConverterUtil;
+import com.vaadin.event.ContextClickEvent;
+import com.vaadin.event.FieldEvents;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
+import com.vaadin.event.ShortcutListener;
 import com.vaadin.server.AbstractErrorMessage;
 import com.vaadin.server.CompositeErrorMessage;
+import com.vaadin.server.ErrorHandler;
 import com.vaadin.server.ErrorMessage;
 import com.vaadin.server.Resource;
 import com.vaadin.ui.TextField;
 import java.util.EventObject;
+import java.util.Locale;
+import org.vaadin.viritin.fluency.ui.FluentAbstractTextField;
 import org.vaadin.viritin.util.HtmlElementPropertySetter;
 
 /**
@@ -33,7 +39,8 @@ import org.vaadin.viritin.util.HtmlElementPropertySetter;
  * "nullRepresentation" (""), adds support for "eager validation" (~ validate
  * while typing) and adds some fluent APIs.
  */
-public class MTextField extends TextField implements EagerValidateable {
+public class MTextField extends TextField implements EagerValidateable, 
+        FluentAbstractTextField<MTextField> {
 
     private boolean eagerValidation = false;
     private boolean eagerValidationStatus;
@@ -106,70 +113,8 @@ public class MTextField extends TextField implements EagerValidateable {
         return lastKnownTextChangeValue;
     }
 
-    public MTextField withConversionError(String message) {
-        setConversionError(message);
-        return this;
-    }
-
-    public MTextField withConverter(Converter<String, ?> converter) {
-        setConverter(converter);
-        return this;
-    }
-
     public MTextField withFullWidth() {
-        setWidth("100%");
-        return this;
-    }
-
-    public MTextField withInputPrompt(String inputPrompt) {
-        setInputPrompt(inputPrompt);
-        return this;
-    }
-
-    public MTextField withReadOnly(boolean readOnly) {
-        setReadOnly(readOnly);
-        return this;
-    }
-
-    public MTextField withValidator(Validator validator) {
-        setImmediate(true);
-        addValidator(validator);
-        return this;
-    }
-
-    public MTextField withWidth(float width, Unit unit) {
-        setWidth(width, unit);
-        return this;
-    }
-
-    public MTextField withWidth(String width) {
-        setWidth(width);
-        return this;
-    }
-
-    public MTextField withNullRepresentation(String nullRepresentation) {
-        setNullRepresentation(nullRepresentation);
-        return this;
-    }
-
-    public MTextField withStyleName(String styleName) {
-        setStyleName(styleName);
-        return this;
-    }
-
-    public MTextField withIcon(Resource icon) {
-        setIcon(icon);
-        return this;
-    }
-
-    public MTextField withRequired(boolean required) {
-        setRequired(required);
-        return this;
-    }
-
-    public MTextField withRequiredError(String requiredError) {
-        setRequiredError(requiredError);
-        return this;
+        return withWidthFull();
     }
 
     public void setSpellcheck(Boolean spellcheck) {
@@ -382,5 +327,379 @@ public class MTextField extends TextField implements EagerValidateable {
             super.validate();
         }
     }
+    
+    /* Fluent setters (FluentAbstractComponent): */
 
+    @Override
+    public MTextField withInputPrompt(String inputPrompt) {
+        setInputPrompt(inputPrompt);
+        return this;
+    }
+
+    @Override
+    public MTextField withNullRepresentation(String nullRepresentation) {
+        setNullRepresentation(nullRepresentation);
+        return this;
+    }
+
+    @Override
+    public MTextField withStyleName(String style, boolean add) {
+        setStyleName(style, add);
+        return this;
+    }
+
+    @Override
+    public MTextField withCaptionAsHtml(boolean captionAsHtml) {
+        setCaptionAsHtml(captionAsHtml);
+        return this;
+    }
+
+    @Override
+    public MTextField withLocale(Locale locale) {
+        setLocale(locale);
+        return this;
+    }
+
+    @Override
+    public MTextField withImmediate(boolean immediate) {
+        setImmediate(immediate);
+        return this;
+    }
+
+    @Override
+    public MTextField withDescription(String description) {
+        setDescription(description);
+        return this;
+    }
+
+    @Override
+    public MTextField withComponentError(ErrorMessage componentError) {
+        setComponentError(componentError);
+        return this;
+    }
+
+    @Override
+    public MTextField withListener(Listener listener) {
+        addListener(listener);
+        return this;
+    }
+
+    @Override
+    public MTextField withData(Object data) {
+        setData(data);
+        return this;
+    }
+
+    @Override
+    public MTextField withResponsive(boolean responsive) {
+        setResponsive(responsive);
+        return this;
+    }
+
+    @Override
+    public MTextField withShortcutListener(ShortcutListener shortcut) {
+        addShortcutListener(shortcut);
+        return this;
+    }
+
+    @Override
+    public MTextField withCaption(String caption) {
+        setCaption(caption);
+        return this;
+    }
+
+    @Override
+    public MTextField withEnabled(boolean enabled) {
+        setEnabled(enabled);
+        return this;
+    }
+
+    @Override
+    public MTextField withIcon(Resource icon) {
+        setIcon(icon);
+        return this;
+    }
+
+    @Override
+    public MTextField withId(String id) {
+        setId(id);
+        return this;
+    }
+
+    @Override
+    public MTextField withPrimaryStyleName(String style) {
+        setPrimaryStyleName(style);
+        return this;
+    }
+
+    @Override
+    public MTextField withReadOnly(boolean readOnly) {
+        setReadOnly(readOnly);
+        return this;
+    }
+
+    @Override
+    public MTextField withStyleName(String style) {
+        setStyleName(style);
+        return this;
+    }
+
+    @Override
+    public MTextField withVisible(boolean visible) {
+        setVisible(visible);
+        return this;
+    }
+
+    @Override
+    public MTextField withAttachListener(AttachListener listener) {
+        addAttachListener(listener);
+        return this;
+    }
+
+    @Override
+    public MTextField withDetachListener(DetachListener listener) {
+        addDetachListener(listener);
+        return this;
+    }
+
+    @Override
+    public MTextField withErrorHandler(ErrorHandler errorHandler) {
+        setErrorHandler(errorHandler);
+        return this;
+    }
+
+    @Override
+    public MTextField withContextClickListener(ContextClickEvent.ContextClickListener listener) {
+        addContextClickListener(listener);
+        return this;
+    }
+
+    @Override
+    public MTextField withHeight(String height) {
+        setHeight(height);
+        return this;
+    }
+
+    @Override
+    public MTextField withHeight(float height, Unit unit) {
+        setHeight(height, unit);
+        return this;
+    }
+
+    @Override
+    public MTextField withWidth(String width) {
+        setWidth(width);
+        return this;
+    }
+
+    @Override
+    public MTextField withWidth(float width, Unit unit) {
+        setWidth(width, unit);
+        return this;
+    }
+
+    @Override
+    public MTextField withSizeFull() {
+        setSizeFull();
+        return this;
+    }
+    
+    @Override
+    public MTextField withWidthFull() {
+        setWidth(100, Unit.PERCENTAGE);
+        return this;
+    }
+
+    @Override
+    public MTextField withHeightFull() {
+        setHeight(100, Unit.PERCENTAGE);
+        return this;
+    }
+
+    @Override
+    public MTextField withSizeUndefined() {
+        setSizeUndefined();
+        return this;
+    }
+
+    @Override
+    public MTextField withWidthUndefined() {
+        setWidthUndefined();
+        return this;
+    }
+
+    @Override
+    public MTextField withHeightUndefined() {
+        setHeightUndefined();
+        return this;
+    }
+    
+    /* Fluent setters (FluentAbstractField): */
+
+    @Override
+    public MTextField withInvalidCommitted(boolean isCommitted) {
+        setInvalidCommitted(isCommitted);
+        return this;
+    }
+
+    @Override
+    public MTextField withBuffered(boolean buffered) {
+        setBuffered(buffered);
+        return this;
+    }
+
+    @Override
+    public MTextField withConverter(Class<?> datamodelType) {
+        setConverter(datamodelType);
+        return this;
+    }
+
+    @Override
+    public MTextField withConvertedValue(Object value) {
+        setConvertedValue(value);
+        return this;
+    }
+
+    @Override
+    public MTextField withInvalidAllowed(boolean invalidAllowed) throws UnsupportedOperationException {
+        setInvalidAllowed(invalidAllowed);
+        return this;
+    }
+
+    @Override
+    public MTextField withTabIndex(int tabIndex) {
+        setTabIndex(tabIndex);
+        return this;
+    }
+
+    @Override
+    public MTextField withConversionError(String valueConversionError) {
+        setConversionError(valueConversionError);
+        return this;
+    }
+
+    @Override
+    public MTextField withValidationVisible(boolean validateAutomatically) {
+        setValidationVisible(validateAutomatically);
+        return this;
+    }
+
+    @Override
+    public MTextField withCurrentBufferedSourceException(SourceException currentBufferedSourceException) {
+        setCurrentBufferedSourceException(currentBufferedSourceException);
+        return this;
+    }
+
+    @Override
+    public MTextField withConverter(Converter<String, ?> converter) {
+        setConverter(converter);
+        return this;
+    }
+
+    @Override
+    public MTextField withRequired(boolean required) {
+        setRequired(required);
+        return this;
+    }
+
+    @Override
+    public MTextField withRequiredError(String requiredMessage) {
+        setRequiredError(requiredMessage);
+        return this;
+    }
+
+    @Override
+    public MTextField withValueChangeListener(ValueChangeListener listener) {
+        addValueChangeListener(listener);
+        return this;
+    }
+
+    @Override
+    public MTextField withValue(String newValue) throws ReadOnlyException {
+        setValue(newValue);
+        return this;
+    }
+
+    @SuppressWarnings("rawtypes")
+    @Override
+    public MTextField withPropertyDataSource(Property newDataSource) {
+        setPropertyDataSource(newDataSource);
+        return this;
+    }
+
+    @Override
+    public MTextField withValidator(Validator validator) {
+        setImmediate(true);
+        addValidator(validator);
+        return this;   
+    }
+
+    @Override
+    public MTextField withReadOnlyStatusChangeListener(ReadOnlyStatusChangeListener listener) {
+        addReadOnlyStatusChangeListener(listener);
+        return this;
+    }
+    
+    /* Fluent setters (FluentAbstractTextField): */
+    
+    @Override
+    public MTextField withNullSettingAllowed(boolean nullSettingAllowed) {
+        setNullSettingAllowed(true);
+        return this;
+    }
+
+    @Override
+    public MTextField withMaxLength(int maxLength) {
+        setMaxLength(maxLength);
+        return this;
+    }
+
+    @Override
+    public MTextField withColumns(int columns) {
+        setColumns(columns);
+        return this;
+    }
+
+    @Override
+    public MTextField withTextChangeEventMode(TextChangeEventMode inputEventMode) {
+        setTextChangeEventMode(inputEventMode);
+        return this;
+    }
+
+    @Override
+    public MTextField withTextChangeTimeout(int timeout) {
+        setTextChangeTimeout(timeout);
+        return this;
+    }
+
+    @Override
+    public MTextField withSelectionRange(int pos, int length) {
+        setSelectionRange(pos, length);
+        return this;
+    }
+
+    @Override
+    public MTextField withCursorPosition(int pos) {
+        setCursorPosition(pos);
+        return this;
+    }
+
+    @Override
+    public MTextField withBlurListener(FieldEvents.BlurListener listener) {
+        addBlurListener(listener);
+        return this;
+    }
+
+    @Override
+    public MTextField withFocusListener(FieldEvents.FocusListener listener) {
+        addFocusListener(listener);
+        return this;
+    }
+
+    @Override
+    public MTextField withTextChangeListener(FieldEvents.TextChangeListener listener) {
+        addTextChangeListener(listener);
+        return this;
+    }
+    
 }

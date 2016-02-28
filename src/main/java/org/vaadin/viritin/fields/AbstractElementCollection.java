@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 import org.vaadin.viritin.BeanBinder;
 import org.vaadin.viritin.MBeanFieldGroup;
 import org.vaadin.viritin.MBeanFieldGroup.FieldGroupListener;
+import org.vaadin.viritin.fluency.ui.FluentCustomField;
 
 /**
  * A superclass for fields suitable for editing collection of referenced objects tied to parent
@@ -39,7 +40,8 @@ import org.vaadin.viritin.MBeanFieldGroup.FieldGroupListener;
  * @param <ET> The type in the entity collection. The type must have empty
  * paremeter constructor or you have to provide Instantiator.
  */
-public abstract class AbstractElementCollection<ET> extends CustomField<Collection> {
+public abstract class AbstractElementCollection<ET> extends 
+        FluentCustomField<AbstractElementCollection<ET>, Collection> {
 
     public static class ElementAddedEvent<ET> extends Component.Event {
 

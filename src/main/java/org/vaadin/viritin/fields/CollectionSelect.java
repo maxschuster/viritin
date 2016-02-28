@@ -5,8 +5,8 @@ import java.util.HashSet;
 
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.CustomField;
 import com.vaadin.ui.ListSelect;
+import org.vaadin.viritin.fluency.ui.FluentCustomField;
 
 /**
  * TODO improve this, just copy pasted from archived SmartFields addon.
@@ -17,7 +17,7 @@ import com.vaadin.ui.ListSelect;
  * @param <T> the type of the value for this select
  */
 @Deprecated
-public class CollectionSelect<T> extends CustomField<Collection<T>> {
+public class CollectionSelect<T> extends FluentCustomField<CollectionSelect<T>, Collection<T>> {
 
 	private ListSelect select = new ListSelect() {
 

@@ -1,5 +1,10 @@
 package org.vaadin.viritin.form;
 
+import com.vaadin.event.ContextClickEvent;
+import com.vaadin.event.ShortcutListener;
+import com.vaadin.server.ErrorHandler;
+import com.vaadin.server.ErrorMessage;
+import com.vaadin.server.Resource;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import com.vaadin.util.ReflectTools;
@@ -15,8 +20,10 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 import javax.validation.groups.Default;
+import org.vaadin.viritin.fluency.ui.FluentCustomComponent;
 import org.vaadin.viritin.label.RichText;
 
 /**
@@ -24,8 +31,8 @@ import org.vaadin.viritin.label.RichText;
  *
  * @param <T> the type of the bean edited
  */
-public abstract class AbstractForm<T> extends CustomComponent implements
-        FieldGroupListener {
+public abstract class AbstractForm<T> extends FluentCustomComponent<AbstractForm<T>>
+        implements FieldGroupListener {
 
     public static class ValidityChangedEvent<T> extends Component.Event {
 
@@ -575,5 +582,156 @@ public abstract class AbstractForm<T> extends CustomComponent implements
         }
         return this;
     }
+    
+    /* Fluent setters (AbstractCustomComponent): */
 
+    @Override
+    public AbstractForm<T> withHeightUndefined() {
+        return (AbstractForm<T>) super.withHeightUndefined();
+    }
+
+    @Override
+    public AbstractForm<T> withWidthUndefined() {
+        return (AbstractForm<T>) super.withWidthUndefined();
+    }
+
+    @Override
+    public AbstractForm<T> withSizeUndefined() {
+        return (AbstractForm<T>) super.withSizeUndefined();
+    }
+
+    @Override
+    public AbstractForm<T> withSizeFull() {
+        return (AbstractForm<T>) super.withSizeFull();
+    }
+
+    @Override
+    public AbstractForm<T> withWidth(float width, Unit unit) {
+        return (AbstractForm<T>) super.withWidth(width, unit);
+    }
+
+    @Override
+    public AbstractForm<T> withWidth(String width) {
+        return (AbstractForm<T>) super.withWidth(width);
+    }
+
+    @Override
+    public AbstractForm<T> withHeight(float height, Unit unit) {
+        return (AbstractForm<T>) super.withHeight(height, unit);
+    }
+
+    @Override
+    public AbstractForm<T> withHeight(String height) {
+        return (AbstractForm<T>) super.withHeight(height);
+    }
+
+    @Override
+    public AbstractForm<T> withContextClickListener(ContextClickEvent.ContextClickListener listener) {
+        return (AbstractForm<T>) super.withContextClickListener(listener);
+    }
+
+    @Override
+    public AbstractForm<T> withErrorHandler(ErrorHandler errorHandler) {
+        return (AbstractForm<T>) super.withErrorHandler(errorHandler);
+    }
+
+    @Override
+    public AbstractForm<T> withDetachListener(DetachListener listener) {
+        return (AbstractForm<T>) super.withDetachListener(listener);
+    }
+
+    @Override
+    public AbstractForm<T> withAttachListener(AttachListener listener) {
+        return (AbstractForm<T>) super.withAttachListener(listener);
+    }
+
+    @Override
+    public AbstractForm<T> withVisible(boolean visible) {
+        return (AbstractForm<T>) super.withVisible(visible);
+    }
+
+    @Override
+    public AbstractForm<T> withStyleName(String style) {
+        return (AbstractForm<T>) super.withStyleName(style);
+    }
+
+    @Override
+    public AbstractForm<T> withReadOnly(boolean readOnly) {
+        return (AbstractForm<T>) super.withReadOnly(readOnly);
+    }
+
+    @Override
+    public AbstractForm<T> withPrimaryStyleName(String style) {
+        return (AbstractForm<T>) super.withPrimaryStyleName(style);
+    }
+
+    @Override
+    public AbstractForm<T> withId(String id) {
+        return (AbstractForm<T>) super.withId(id);
+    }
+
+    @Override
+    public AbstractForm<T> withIcon(Resource icon) {
+        return (AbstractForm<T>) super.withIcon(icon);
+    }
+
+    @Override
+    public AbstractForm<T> withEnabled(boolean enabled) {
+        return (AbstractForm<T>) super.withEnabled(enabled);
+    }
+
+    @Override
+    public AbstractForm<T> withCaption(String caption) {
+        return (AbstractForm<T>) super.withCaption(caption);
+    }
+
+    @Override
+    public AbstractForm<T> withShortcutListener(ShortcutListener shortcut) {
+        return (AbstractForm<T>) super.withShortcutListener(shortcut);
+    }
+
+    @Override
+    public AbstractForm<T> withResponsive(boolean responsive) {
+        return (AbstractForm<T>) super.withResponsive(responsive);
+    }
+
+    @Override
+    public AbstractForm<T> withData(Object data) {
+        return (AbstractForm<T>) super.withData(data);
+    }
+
+    @Override
+    public AbstractForm<T> withListener(Listener listener) {
+        return (AbstractForm<T>) super.withListener(listener);
+    }
+
+    @Override
+    public AbstractForm<T> withComponentError(ErrorMessage componentError) {
+        return (AbstractForm<T>) super.withComponentError(componentError);
+    }
+
+    @Override
+    public AbstractForm<T> withDescription(String description) {
+        return (AbstractForm<T>) super.withDescription(description);
+    }
+
+    @Override
+    public AbstractForm<T> withImmediate(boolean immediate) {
+        return (AbstractForm<T>) super.withImmediate(immediate);
+    }
+
+    @Override
+    public AbstractForm<T> withLocale(Locale locale) {
+        return (AbstractForm<T>) super.withLocale(locale);
+    }
+
+    @Override
+    public AbstractForm<T> withCaptionAsHtml(boolean captionAsHtml) {
+        return (AbstractForm<T>) super.withCaptionAsHtml(captionAsHtml);
+    }
+
+    @Override
+    public AbstractForm<T> withStyleName(String style, boolean add) {
+        return (AbstractForm<T>) super.withStyleName(style, add);
+    }
 }

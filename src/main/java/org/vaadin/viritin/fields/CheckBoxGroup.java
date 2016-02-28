@@ -2,7 +2,6 @@ package org.vaadin.viritin.fields;
 
 import com.vaadin.data.util.converter.Converter;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.CustomField;
 import com.vaadin.ui.OptionGroup;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +13,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import org.vaadin.viritin.ListContainer;
+import org.vaadin.viritin.fluency.ui.FluentCustomField;
 
 /**
  * An OptionGroup that can be used as a field to modify
@@ -30,7 +30,8 @@ import org.vaadin.viritin.ListContainer;
  * @author Matti Tahvonen
  * @param <ET> The type in the entity collection
  */
-public class CheckBoxGroup<ET> extends CustomField<Collection> {
+public class CheckBoxGroup<ET> extends 
+        FluentCustomField<CheckBoxGroup<ET>, Collection> {
     
     private CaptionGenerator<ET> captionGenerator;
 
@@ -210,28 +211,24 @@ public class CheckBoxGroup<ET> extends CustomField<Collection> {
         return optionGroup;
     }
 
+    /**
+     * An alias for {@link #withWidthFull()}
+     * 
+     * @return This component
+     * @see #withWidthFull() 
+     */
     public CheckBoxGroup<ET> withFullWidth() {
-        setWidth(100, Unit.PERCENTAGE);
-        return this;
+        return withWidthFull();
     }
 
-    public CheckBoxGroup<ET> withHeight(String height) {
-        setHeight(height);
-        return this;
-    }
-
+    /**
+     * An alias for {@link #withHeightFull()}
+     * 
+     * @return This component
+     * @see #withHeightFull() 
+     */
     public CheckBoxGroup<ET> withFullHeight() {
-        return withHeight("100%");
-    }
-
-    public CheckBoxGroup<ET> withWidth(String width) {
-        setWidth(width);
-        return this;
-    }
-
-    public CheckBoxGroup<ET> withCaption(String caption) {
-        setCaption(caption);
-        return this;
+        return withHeightFull();
     }
 
 }
