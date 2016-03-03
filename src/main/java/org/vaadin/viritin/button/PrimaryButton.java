@@ -117,8 +117,8 @@ public class PrimaryButton extends MButton {
     }
 
     @Override
-    public PrimaryButton withStyleName(String style) {
-        return (PrimaryButton) super.withStyleName(style);
+    public PrimaryButton withStyleName(String... styles) {
+        return (PrimaryButton) super.withStyleName(styles);
     }
 
     @Override

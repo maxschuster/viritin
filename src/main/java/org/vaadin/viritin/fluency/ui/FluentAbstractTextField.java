@@ -22,14 +22,14 @@ import org.vaadin.viritin.fluency.event.FluentFieldEvents;
  * A {@link AbstractTextField} complemented by fluent setters.
  *
  * @author Max Schuster
- * @param <C> Fluent component type
+ * @param <S> Self-referential generic type
  * @see AbstractTextField
  */
-public interface FluentAbstractTextField<C extends AbstractTextField & FluentAbstractTextField<C>>
-        extends FluentAbstractField<C, String>,
-        FluentFieldEvents.FluentBlurNotifier<C>,
-        FluentFieldEvents.FluentFocusNotifier<C>,
-        FluentFieldEvents.FluentTextChangeNotifier<C> {
+public interface FluentAbstractTextField<S extends AbstractTextField & FluentAbstractTextField<S>>
+        extends FluentAbstractField<S, String>,
+        FluentFieldEvents.FluentBlurNotifier<S>,
+        FluentFieldEvents.FluentFocusNotifier<S>,
+        FluentFieldEvents.FluentTextChangeNotifier<S> {
 
     /**
      * Sets the null-string representation.
@@ -45,11 +45,11 @@ public interface FluentAbstractTextField<C extends AbstractTextField & FluentAbs
      * </p>
      *
      * @param nullRepresentation Textual representation for null strings.
-     * @return This component
+     * @return this (for method chaining)
      * @see TextField#setNullSettingAllowed(boolean)
      * @see AbstractTextField#setNullRepresentation(java.lang.String)
      */
-    public C withNullRepresentation(String nullRepresentation);
+    public S withNullRepresentation(String nullRepresentation);
 
     /**
      * Sets the null conversion mode.
@@ -69,21 +69,21 @@ public interface FluentAbstractTextField<C extends AbstractTextField & FluentAbs
      *
      * @param nullSettingAllowed Should the null-string representation always be
      * converted to null-values.
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractTextField#setNullSettingAllowed(boolean)
      * @see TextField#getNullRepresentation()
      */
-    public C withNullSettingAllowed(boolean nullSettingAllowed);
+    public S withNullSettingAllowed(boolean nullSettingAllowed);
 
     /**
      * Sets the maximum number of characters in the field. Value -1 is
      * considered unlimited. Terminal may however have some technical limits.
      *
      * @param maxLength the maxLength to set
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractTextField#setMaxLength(int)
      */
-    public C withMaxLength(int maxLength);
+    public S withMaxLength(int maxLength);
 
     /**
      * Sets the number of columns in the editor. If the number of columns is set
@@ -91,31 +91,31 @@ public interface FluentAbstractTextField<C extends AbstractTextField & FluentAbs
      * adapter.
      *
      * @param columns the number of columns to set.
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractTextField#setColumns(int)
      */
-    public C withColumns(int columns);
+    public S withColumns(int columns);
 
     /**
      * Sets the input prompt - a textual prompt that is displayed when the field
      * would otherwise be empty, to prompt the user for input.
      *
      * @param inputPrompt
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractTextField#setInputPrompt(java.lang.String)
      */
-    public C withInputPrompt(String inputPrompt);
+    public S withInputPrompt(String inputPrompt);
 
     /**
      * Sets the mode how the TextField triggers {@link TextChangeEvent}s.
      *
      * @param inputEventMode the new mode
-     * @return This component
+     * @return this (for method chaining)
      * @see
      * AbstractTextField#setTextChangeEventMode(com.vaadin.ui.AbstractTextField.TextChangeEventMode)
      * @see TextChangeEventMode
      */
-    public C withTextChangeEventMode(
+    public S withTextChangeEventMode(
             AbstractTextField.TextChangeEventMode inputEventMode);
 
     /**
@@ -124,11 +124,11 @@ public interface FluentAbstractTextField<C extends AbstractTextField & FluentAbs
      * {@link TextChangeEventMode#LAZY} or {@link TextChangeEventMode#TIMEOUT}.
      *
      * @param timeout the timeout in milliseconds
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractTextField#setTextChangeTimeout(int)
      * @see #getTextChangeEventMode()
      */
-    public C withTextChangeTimeout(int timeout);
+    public S withTextChangeTimeout(int timeout);
 
     /**
      * Sets the range of text to be selected.
@@ -137,19 +137,19 @@ public interface FluentAbstractTextField<C extends AbstractTextField & FluentAbs
      *
      * @param pos the position of the first character to be selected
      * @param length the number of characters to be selected
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractTextField#setSelectionRange(int, int)
      */
-    public C withSelectionRange(int pos, int length);
+    public S withSelectionRange(int pos, int length);
 
     /**
      * Sets the cursor position in the field. As a side effect the field will
      * become focused.
      *
      * @param pos the position for the cursor
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractTextField#setCursorPosition(int)
      */
-    public C withCursorPosition(int pos);
+    public S withCursorPosition(int pos);
 
 }

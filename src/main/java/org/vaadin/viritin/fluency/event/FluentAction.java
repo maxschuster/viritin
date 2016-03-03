@@ -21,50 +21,61 @@ import com.vaadin.server.Resource;
 
 /**
  * An {@link Action} complemented by fluent setters.
- * 
+ *
  * @author Max Schuster
  * @see Action
  */
 public class FluentAction extends Action {
 
+    /**
+     * Constructs a new action with the given caption.
+     *
+     * @param caption the caption for the new action.
+     */
     public FluentAction(String caption) {
         super(caption);
     }
 
+    /**
+     * Constructs a new action with the given caption string and icon.
+     *
+     * @param caption the caption for the new action.
+     * @param icon the icon for the new action.
+     */
     public FluentAction(String caption, Resource icon) {
         super(caption, icon);
     }
 
     /**
      * A {@link ShortcutNotifier} complemented by fluent setters.
-     * 
-     * @param <C> Fluent component type
+     *
+     * @param <S> Self-referential generic type
      * @see ShortcutNotifier
      */
-    public interface FluentShortcutNotifier<C extends FluentShortcutNotifier<C>>
+    public interface FluentShortcutNotifier<S extends FluentShortcutNotifier<S>>
             extends ShortcutNotifier {
 
-        public C withShortcutListener(ShortcutListener shortcut);
+        public S withShortcutListener(ShortcutListener shortcut);
 
     }
 
     /**
      * A {@link Container} complemented by fluent setters.
-     * 
-     * @param <C> Fluent component type
+     *
+     * @param <S> Self-referential generic type
      * @see Container
      */
-    public interface FluentContainer<C extends FluentContainer<C>>
+    public interface FluentContainer<S extends FluentContainer<S>>
             extends Container {
 
         /**
          * Registers a new action handler for this container
          *
          * @param actionHandler the new handler to be added.
-         * @return This component
+         * @return this (for method chaining)
          * @see #addActionHandler(com.vaadin.event.Action.Handler)
          */
-        public C withActionHandler(Action.Handler actionHandler);
+        public S withActionHandler(Action.Handler actionHandler);
 
     }
 
@@ -73,7 +84,7 @@ public class FluentAction extends Action {
      *
      * @param caption the caption to set.
      * @return This action
-     * @see #setCaption(java.lang.String) 
+     * @see #setCaption(java.lang.String)
      */
     public FluentAction withCaption(String caption) {
         setCaption(caption);
@@ -85,7 +96,7 @@ public class FluentAction extends Action {
      *
      * @param icon the icon to set.
      * @return This action
-     * @see #setIcon(com.vaadin.server.Resource) 
+     * @see #setIcon(com.vaadin.server.Resource)
      */
     public FluentAction withIcon(Resource icon) {
         setIcon(icon);

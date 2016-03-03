@@ -22,29 +22,29 @@ import com.vaadin.ui.ComponentContainer;
  * A {@link ComponentContainer} complemented by fluent setters.
  * 
  * @author Max Schuster
- * @param <C> Fluent component type
+ * @param <S> Self-referential generic type
  * @see ComponentContainer
  */
-public interface FluentComponentContainer<C extends FluentComponentContainer<C>>
-        extends ComponentContainer, FluentHasComponents<C>,
-        FluentHasComponents.FluentComponentAttachDetachNotifier<C> {
+public interface FluentComponentContainer<S extends FluentComponentContainer<S>>
+        extends ComponentContainer, FluentHasComponents<S>,
+        FluentHasComponents.FluentComponentAttachDetachNotifier<S> {
 
     /**
      * Adds the component into this container.
      *
      * @param c the component to be added.
-     * @return This component
+     * @return this (for method chaining)
      * @see #addComponent(com.vaadin.ui.Component)
      */
-    public C withComponent(Component c);
+    public S withComponent(Component c);
 
     /**
      * Adds the components in the given order to this component container.
      *
      * @param components The components to add.
-     * @return This component
+     * @return this (for method chaining)
      * @see #addComponents(com.vaadin.ui.Component...)
      */
-    public C withComponents(Component... components);
+    public S withComponents(Component... components);
 
 }

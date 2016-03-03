@@ -852,8 +852,10 @@ public class MTable<T> extends Table implements FluentAbstractField<MTable<T>, O
     }
 
     @Override
-    public MTable<T> withStyleName(String style) {
-        setStyleName(style);
+    public MTable<T> withStyleName(String... styles) {
+        for (String style : styles) {
+            addStyleName(style);
+        }
         return this;
     }
 

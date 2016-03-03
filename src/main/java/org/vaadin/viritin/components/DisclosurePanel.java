@@ -185,8 +185,10 @@ public class DisclosurePanel extends VerticalLayout implements
     }
 
     @Override
-    public DisclosurePanel withStyleName(String style) {
-        setStyleName(style);
+    public DisclosurePanel withStyleName(String... styles) {
+        for (String style : styles) {
+            addStyleName(style);
+        }
         return this;
     }
 

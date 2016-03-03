@@ -13,29 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.vaadin.viritin.fluency.data;
+package org.vaadin.viritin.fluency.ui;
 
-import com.vaadin.data.BufferedValidatable;
+import com.vaadin.ui.HasChildMeasurementHint;
 
 /**
- * A {@link BufferedValidatable} complemented by fluent setters.
+ * A {@link HasChildMeasurementHint} complemented by fluent setters.
  *
  * @author Max Schuster
  * @param <S> Self-referential generic type
- * @see BufferedValidatable
+ * @see HasChildMeasurementHint
  */
-public interface FluentBufferedValidatable<S extends FluentBufferedValidatable<S>>
-        extends BufferedValidatable, FluentBuffered<S>,
-        FluentValidatable<S> {
+public interface FluentHasChildMeasurementHint<S extends FluentHasChildMeasurementHint<S>>
+        extends HasChildMeasurementHint {
 
     /**
-     * Sets if the invalid data should be committed to datasource. The default
-     * is <code>false</code>.
+     * Sets desired child size measurement hint.
      *
-     * @param isCommitted invalid data should be committed to datasource
+     * @param hint desired hint. A value of null will reset value back to the
+     * default (MEASURE_ALWAYS)
      * @return this (for method chaining)
-     * @see #setInvalidCommitted(boolean)
+     * @see
+     * #withChildMeasurementHint(com.vaadin.ui.HasChildMeasurementHint.ChildMeasurementHint)
      */
-    public S withInvalidCommitted(boolean isCommitted);
+    public S withChildMeasurementHint(ChildMeasurementHint hint);
 
 }

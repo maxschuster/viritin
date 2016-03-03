@@ -21,40 +21,40 @@ import com.vaadin.ui.HasComponents;
  * A {@link HasComponents} complemented by fluent setters.
  *
  * @author Max Schuster
- * @param <C> Fluent component type
+ * @param <S> Self-referential generic type
  * @see HasComponents
  */
-public interface FluentHasComponents<C extends FluentHasComponents<C>> extends
-        HasComponents, FluentComponent<C> {
+public interface FluentHasComponents<S extends FluentHasComponents<S>> extends
+        HasComponents, FluentComponent<S> {
 
     /**
      * A {@link ComponentAttachDetachNotifier} complemented by fluent setters.
      *
-     * @param <C> Fluent component type
+     * @param <S> Self-referential generic type
      * @see ComponentAttachDetachNotifier
      */
-    public interface FluentComponentAttachDetachNotifier<C extends FluentHasComponents<C>>
+    public interface FluentComponentAttachDetachNotifier<S extends FluentHasComponents<S>>
             extends ComponentAttachDetachNotifier {
 
         /**
          * Listens the component attach events.
          *
          * @param listener the listener to add.
-         * @return This component
+         * @return this (for method chaining)
          * @see
          * #addComponentAttachListener(com.vaadin.ui.HasComponents.ComponentAttachListener)
          */
-        public C withComponentAttachListener(ComponentAttachListener listener);
+        public S withComponentAttachListener(ComponentAttachListener listener);
 
         /**
          * Listens the component detach events.
          *
          * @param listener the listener to add.
-         * @return This component
+         * @return this (for method chaining)
          * @see
          * #addComponentDetachListener(com.vaadin.ui.HasComponents.ComponentDetachListener)
          */
-        public C withComponentDetachListener(ComponentDetachListener listener);
+        public S withComponentDetachListener(ComponentDetachListener listener);
 
     }
 

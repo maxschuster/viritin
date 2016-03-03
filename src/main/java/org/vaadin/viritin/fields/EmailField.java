@@ -199,8 +199,8 @@ public class EmailField extends MTextField {
     }
 
     @Override
-    public EmailField  withStyleName(String style) {
-        return (EmailField) super.withStyleName(style);
+    public EmailField  withStyleName(String... styles) {
+        return (EmailField) super.withStyleName(styles);
     }
 
     @Override

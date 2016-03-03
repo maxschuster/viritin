@@ -229,8 +229,8 @@ public class EnumSelect<T> extends TypedSelect<T> {
     }
 
     @Override
-    public EnumSelect<T> withStyleName(String style) {
-        return (EnumSelect<T>) super.withStyleName(style);
+    public EnumSelect<T> withStyleName(String... styles) {
+        return (EnumSelect<T>) super.withStyleName(styles);
     }
 
     @Override

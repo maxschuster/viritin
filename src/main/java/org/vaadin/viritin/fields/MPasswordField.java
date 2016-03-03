@@ -309,8 +309,10 @@ public class MPasswordField extends PasswordField implements EagerValidateable,
     }
 
     @Override
-    public MPasswordField withStyleName(String style) {
-        setStyleName(style);
+    public MPasswordField withStyleName(String... styles) {
+        for (String style : styles) {
+            addStyleName(style);
+        }
         return this;
     }
 

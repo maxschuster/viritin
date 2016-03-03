@@ -189,8 +189,10 @@ public class MTextArea extends TextArea implements
     }
 
     @Override
-    public MTextArea withStyleName(String style) {
-        setStyleName(style);
+    public MTextArea withStyleName(String... styles) {
+        for (String style : styles) {
+            addStyleName(style);
+        }
         return this;
     }
 

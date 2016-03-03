@@ -30,312 +30,314 @@ import java.util.Locale;
  * A {@link CustomField} complemented by fluent setters.
  * 
  * @author Max Schuster
- * @param <C> Fluent component type
+ * @param <S> Self-referential generic type
  * @param <T> The type of values in the field, which might not be the same type
  * as that of the data source if converters are used
  * @see CustomField
  */
 @SuppressWarnings("unchecked")
-public abstract class FluentCustomField<C extends FluentCustomField<C, T>, T> extends
-        CustomField<T> implements FluentAbstractField<C, T> {
+public abstract class FluentCustomField<S extends FluentCustomField<S, T>, T> extends
+        CustomField<T> implements FluentAbstractField<S, T> {
     
     /* Fluent setters (FluentAbstractComponent): */
 
     @Override
-    public C withStyleName(String style, boolean add) {
+    public S withStyleName(String style, boolean add) {
         setStyleName(style, add);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withCaptionAsHtml(boolean captionAsHtml) {
+    public S withCaptionAsHtml(boolean captionAsHtml) {
         setCaptionAsHtml(captionAsHtml);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withLocale(Locale locale) {
+    public S withLocale(Locale locale) {
         setLocale(locale);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withImmediate(boolean immediate) {
+    public S withImmediate(boolean immediate) {
         setImmediate(immediate);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withDescription(String description) {
+    public S withDescription(String description) {
         setDescription(description);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withComponentError(ErrorMessage componentError) {
+    public S withComponentError(ErrorMessage componentError) {
         setComponentError(componentError);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withListener(Listener listener) {
+    public S withListener(Listener listener) {
         addListener(listener);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withData(Object data) {
+    public S withData(Object data) {
         setData(data);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withResponsive(boolean responsive) {
+    public S withResponsive(boolean responsive) {
         setResponsive(responsive);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withShortcutListener(ShortcutListener shortcut) {
+    public S withShortcutListener(ShortcutListener shortcut) {
         addShortcutListener(shortcut);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withCaption(String caption) {
+    public S withCaption(String caption) {
         setCaption(caption);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withEnabled(boolean enabled) {
+    public S withEnabled(boolean enabled) {
         setEnabled(enabled);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withIcon(Resource icon) {
+    public S withIcon(Resource icon) {
         setIcon(icon);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withId(String id) {
+    public S withId(String id) {
         setId(id);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withPrimaryStyleName(String style) {
+    public S withPrimaryStyleName(String style) {
         setPrimaryStyleName(style);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withReadOnly(boolean readOnly) {
+    public S withReadOnly(boolean readOnly) {
         setReadOnly(readOnly);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withStyleName(String style) {
-        setStyleName(style);
-        return (C) this;
+    public S withStyleName(String... styles) {
+        for (String style : styles) {
+            addStyleName(style);
+        }
+        return (S) this;
     }
 
     @Override
-    public C withVisible(boolean visible) {
+    public S withVisible(boolean visible) {
         setVisible(visible);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withAttachListener(AttachListener listener) {
+    public S withAttachListener(AttachListener listener) {
         addAttachListener(listener);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withDetachListener(DetachListener listener) {
+    public S withDetachListener(DetachListener listener) {
         addDetachListener(listener);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withErrorHandler(ErrorHandler errorHandler) {
+    public S withErrorHandler(ErrorHandler errorHandler) {
         setErrorHandler(errorHandler);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withContextClickListener(ContextClickEvent.ContextClickListener listener) {
+    public S withContextClickListener(ContextClickEvent.ContextClickListener listener) {
         addContextClickListener(listener);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withHeight(String height) {
+    public S withHeight(String height) {
         setHeight(height);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withHeight(float height, Unit unit) {
+    public S withHeight(float height, Unit unit) {
         setHeight(height, unit);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withWidth(String width) {
+    public S withWidth(String width) {
         setWidth(width);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withWidth(float width, Unit unit) {
+    public S withWidth(float width, Unit unit) {
         setWidth(width, unit);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withSizeFull() {
+    public S withSizeFull() {
         setSizeFull();
-        return (C) this;
+        return (S) this;
     }
     
     @Override
-    public C withWidthFull() {
+    public S withWidthFull() {
         setWidth(100, Unit.PERCENTAGE);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withHeightFull() {
+    public S withHeightFull() {
         setHeight(100, Unit.PERCENTAGE);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withSizeUndefined() {
+    public S withSizeUndefined() {
         setSizeUndefined();
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withWidthUndefined() {
+    public S withWidthUndefined() {
         setWidthUndefined();
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withHeightUndefined() {
+    public S withHeightUndefined() {
         setHeightUndefined();
-        return (C) this;
+        return (S) this;
     }
     
     /* Fluent setters (FluentAbstractField): */
 
     @Override
-    public C withInvalidCommitted(boolean isCommitted) {
+    public S withInvalidCommitted(boolean isCommitted) {
         setInvalidCommitted(isCommitted);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withBuffered(boolean buffered) {
+    public S withBuffered(boolean buffered) {
         setBuffered(buffered);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withConverter(Class<?> datamodelType) {
+    public S withConverter(Class<?> datamodelType) {
         setConverter(datamodelType);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withConvertedValue(Object value) {
+    public S withConvertedValue(Object value) {
         setConvertedValue(value);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withInvalidAllowed(boolean invalidAllowed) throws UnsupportedOperationException {
+    public S withInvalidAllowed(boolean invalidAllowed) throws UnsupportedOperationException {
         setInvalidAllowed(invalidAllowed);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withTabIndex(int tabIndex) {
+    public S withTabIndex(int tabIndex) {
         setTabIndex(tabIndex);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withConversionError(String valueConversionError) {
+    public S withConversionError(String valueConversionError) {
         setConversionError(valueConversionError);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withValidationVisible(boolean validateAutomatically) {
+    public S withValidationVisible(boolean validateAutomatically) {
         setValidationVisible(validateAutomatically);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withCurrentBufferedSourceException(SourceException currentBufferedSourceException) {
+    public S withCurrentBufferedSourceException(SourceException currentBufferedSourceException) {
         setCurrentBufferedSourceException(currentBufferedSourceException);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withConverter(Converter<T, ?> converter) {
+    public S withConverter(Converter<T, ?> converter) {
         setConverter(converter);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withRequired(boolean required) {
+    public S withRequired(boolean required) {
         setRequired(required);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withRequiredError(String requiredMessage) {
+    public S withRequiredError(String requiredMessage) {
         setRequiredError(requiredMessage);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withValueChangeListener(ValueChangeListener listener) {
+    public S withValueChangeListener(ValueChangeListener listener) {
         addValueChangeListener(listener);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withValue(T newValue) throws ReadOnlyException {
+    public S withValue(T newValue) throws ReadOnlyException {
         setValue(newValue);
-        return (C) this;
+        return (S) this;
     }
 
     @SuppressWarnings("rawtypes")
     @Override
-    public C withPropertyDataSource(Property newDataSource) {
+    public S withPropertyDataSource(Property newDataSource) {
         setPropertyDataSource(newDataSource);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withValidator(Validator validator) {
+    public S withValidator(Validator validator) {
         addValidator(validator);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withReadOnlyStatusChangeListener(ReadOnlyStatusChangeListener listener) {
+    public S withReadOnlyStatusChangeListener(ReadOnlyStatusChangeListener listener) {
         addReadOnlyStatusChangeListener(listener);
-        return (C) this;
+        return (S) this;
     }
     
 }

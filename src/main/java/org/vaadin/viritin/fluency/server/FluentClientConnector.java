@@ -22,29 +22,29 @@ import com.vaadin.server.ErrorHandler;
  * A {@link ClientConnector} complemented by fluent setters.
  *
  * @author Max Schuster
- * @param <C> Fluent component type
+ * @param <S> Self-referential generic typeS
  * @see ClientConnector
  */
-public interface FluentClientConnector<C extends FluentClientConnector<C>>
+public interface FluentClientConnector<S extends FluentClientConnector<S>>
         extends ClientConnector {
 
     /**
      * Adds an attach listener to this connector.
      * 
      * @param listener The attach listener
-     * @return This component
+     * @return this (for method chaining)
      * @see #addAttachListener(com.vaadin.server.ClientConnector.AttachListener)
      */
-    public C withAttachListener(AttachListener listener);
+    public S withAttachListener(AttachListener listener);
 
     /**
      * Adds a detach listener to this connector.
      * 
      * @param listener The detach listener
-     * @return This component
+     * @return this (for method chaining)
      * @see #addDetachListener(com.vaadin.server.ClientConnector.DetachListener)
      */
-    public C withDetachListener(DetachListener listener);
+    public S withDetachListener(DetachListener listener);
 
     /**
      * Sets the error handler for the connector.
@@ -53,9 +53,9 @@ public interface FluentClientConnector<C extends FluentClientConnector<C>>
      * data coming from the client for this connector.
      *
      * @param errorHandler The error handler for this connector
-     * @return This component
+     * @return this (for method chaining)
      * @see #setErrorHandler(com.vaadin.server.ErrorHandler)
      */
-    public C withErrorHandler(ErrorHandler errorHandler);
+    public S withErrorHandler(ErrorHandler errorHandler);
 
 }

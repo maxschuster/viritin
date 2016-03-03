@@ -16,17 +16,16 @@
 package org.vaadin.viritin.fluency.data;
 
 import com.vaadin.data.Property;
-import org.vaadin.viritin.fluency.ui.FluentComponent;
 
 /**
  * A {@link Property} complemented by fluent setters.
  *
  * @author Max Schuster
- * @param <C> Fluent component type
+ * @param <S> Self-referential generic type
  * @param <T> type of values of the property
  * @see Property
  */
-public interface FluentProperty<C extends FluentProperty<C, T>, T>
+public interface FluentProperty<S extends FluentProperty<S, T>, T>
         extends Property<T> {
 
     /**
@@ -44,10 +43,10 @@ public interface FluentProperty<C extends FluentProperty<C, T>, T>
      * the type returned by getType
      *
      * @throws Property.ReadOnlyException if the object is in read-only mode
-     * @return This component
+     * @return this (for method chaining)
      * @see #setValue(java.lang.Object)
      */
-    public C withValue(T newValue) throws Property.ReadOnlyException;
+    public S withValue(T newValue) throws Property.ReadOnlyException;
 
     /**
      * Sets the Property's read-only mode to the specified status.
@@ -56,59 +55,58 @@ public interface FluentProperty<C extends FluentProperty<C, T>, T>
      * <code>isReadOnly</code> mode query correctly.
      *
      * @param newStatus new read-only status of the Property
-     * @return This component
+     * @return this (for method chaining)
      * @see #setReadOnly(boolean)
      */
-    public C withReadOnly(boolean newStatus);
+    public S withReadOnly(boolean newStatus);
 
     /**
      * A {@link ValueChangeNotifier} complemented by fluent setters.
      *
-     * @param <C> Fluent component type
+     * @param <S> Self-referential generic type
      * @see ValueChangeNotifier
      */
-    public interface FluentValueChangeNotifier<C extends FluentComponent<C> & FluentValueChangeNotifier<C>> 
+    public interface FluentValueChangeNotifier<S extends FluentValueChangeNotifier<S>> 
             extends ValueChangeNotifier {
 
         /**
          * Registers a new value change listener for this Property.
          *
          * @param listener the new Listener to be registered
-         * @return This component
+         * @return this (for method chaining)
          */
-        public C withValueChangeListener(Property.ValueChangeListener listener);
+        public S withValueChangeListener(Property.ValueChangeListener listener);
 
     }
     
     /**
      * A {@link Editor} complemented by fluent setters.
      *
-     * @param <C> Fluent component type
+     * @param <S> Self-referential generic type
      * @see Editor
      */
-    public interface FluentEditor<C extends FluentComponent<C> & FluentEditor<C>>
-            extends Editor, FluentViewer<C> {
+    public interface FluentEditor<S extends FluentEditor<S>>
+            extends Editor, FluentViewer<S> {
         
     }
 
     /**
      * A {@link Viewer} complemented by fluent setters.
      *
-     * @param <C> Fluent component type
+     * @param <S> Self-referential generic type
      * @see Viewer
      */
-    public interface FluentViewer<C extends FluentComponent<C> & FluentViewer<C>>
-            extends Viewer {
+    public interface FluentViewer<S extends FluentViewer<S>> extends Viewer {
 
         /**
          * Sets the Property that serves as the data source of the viewer.
          *
          * @param newDataSource the new data source Property
-         * @return This component
+         * @return this (for method chaining)
          * @see #setPropertyDataSource(com.vaadin.data.Property) 
          */
         @SuppressWarnings("rawtypes")
-        public C withPropertyDataSource(Property newDataSource);
+        public S withPropertyDataSource(Property newDataSource);
 
     }
 
@@ -116,21 +114,21 @@ public interface FluentProperty<C extends FluentProperty<C, T>, T>
      * A {@link ProperReadOnlyStatusChangeNotifierty} complemented by fluent
      * setters.
      *
-     * @param <C> Fluent component type
+     * @param <S> Self-referential generic type
      * @see ReadOnlyStatusChangeNotifier
      */
-    public interface FluentReadOnlyStatusChangeNotifier<C extends FluentReadOnlyStatusChangeNotifier<C>> 
+    public interface FluentReadOnlyStatusChangeNotifier<S extends FluentReadOnlyStatusChangeNotifier<S>> 
             extends ReadOnlyStatusChangeNotifier {
 
         /**
          * Registers a new read-only status change listener for this Property.
          *
          * @param listener the new Listener to be registered
-         * @return This component
+         * @return this (for method chaining)
          * @see
          * #addReadOnlyStatusChangeListener(com.vaadin.data.Property.ReadOnlyStatusChangeListener)
          */
-        public C withReadOnlyStatusChangeListener(
+        public S withReadOnlyStatusChangeListener(
                 Property.ReadOnlyStatusChangeListener listener);
 
     }

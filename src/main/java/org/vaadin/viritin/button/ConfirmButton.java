@@ -173,8 +173,8 @@ public class ConfirmButton extends MButton {
     }
 
     @Override
-    public ConfirmButton withStyleName(String style) {
-        return (ConfirmButton) super.withStyleName(style);
+    public ConfirmButton withStyleName(String... styles) {
+        return (ConfirmButton) super.withStyleName(styles);
     }
 
     @Override

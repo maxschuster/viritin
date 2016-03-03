@@ -21,10 +21,11 @@ import com.vaadin.server.Sizeable;
  * A {@link Sizeable} complemented by fluent setters.
  * 
  * @author Max Schuster
- * @param <C> Fluent component type
+ * @param <S> Self-referential generic typeS
  * @see Sizeable
  */
-public interface FluentSizeable<C extends FluentSizeable<C>> extends Sizeable {
+public interface FluentSizeable<S extends FluentSizeable<S>>
+        extends Sizeable {
 
     /**
      * Sets the height of the component using String presentation.
@@ -40,10 +41,10 @@ public interface FluentSizeable<C extends FluentSizeable<C>> extends Sizeable {
      * specification</a> for more details.
      *
      * @param height in CSS style string representation
-     * @return This component
+     * @return this (for method chaining)
      * @see #setHeight(java.lang.String)
      */
-    public C withHeight(String height);
+    public S withHeight(String height);
 
     /**
      * Sets the height of the object. Negative number implies unspecified size
@@ -51,10 +52,10 @@ public interface FluentSizeable<C extends FluentSizeable<C>> extends Sizeable {
      *
      * @param height the height of the object.
      * @param unit the unit used for the width.
-     * @return This component
+     * @return this (for method chaining)
      * @see #setHeight(float, com.vaadin.server.Sizeable.Unit)
      */
-    public C withHeight(float height, Unit unit);
+    public S withHeight(float height, Unit unit);
 
     /**
      * Sets the width of the component using String presentation.
@@ -71,10 +72,10 @@ public interface FluentSizeable<C extends FluentSizeable<C>> extends Sizeable {
      *
      * @param width in CSS style string representation, null or empty string to
      * reset
-     * @return This component
+     * @return this (for method chaining)
      * @see #setWidth(java.lang.String)
      */
-    public C withWidth(String width);
+    public S withWidth(String width);
 
     /**
      * Sets the width of the object. Negative number implies unspecified size
@@ -82,53 +83,53 @@ public interface FluentSizeable<C extends FluentSizeable<C>> extends Sizeable {
      *
      * @param width the width of the object.
      * @param unit the unit used for the width.
-     * @return This component
+     * @return this (for method chaining)
      * @see #setWidth(float, com.vaadin.server.Sizeable.Unit)
      */
-    public C withWidth(float width, Unit unit);
+    public S withWidth(float width, Unit unit);
 
     /**
      * Sets the size to 100% x 100%.
-     * @return This component
+     * @return this (for method chaining)
      * @see #setSizeFull()
      */
-    public C withSizeFull();
+    public S withSizeFull();
 
     /**
      * Sets the width to 100%.
      *
-     * @return This component
+     * @return this (for method chaining)
      */
-    public C withWidthFull();
+    public S withWidthFull();
 
     /**
      * Sets the height to 100%.
      *
-     * @return This component
+     * @return this (for method chaining)
      */
-    public C withHeightFull();
+    public S withHeightFull();
 
     /**
      * Clears any size settings.
      * @return
      * @see #setSizeUndefined()
      */
-    public C withSizeUndefined();
+    public S withSizeUndefined();
 
     /**
      * Clears any defined width
      *
-     * @return This component
+     * @return this (for method chaining)
      * @see #setWidthUndefined()
      */
-    public C withWidthUndefined();
+    public S withWidthUndefined();
 
     /**
      * Clears any defined height
      *
-     * @return This component
+     * @return this (for method chaining)
      * @see #setHeightUndefined()
      */
-    public C withHeightUndefined();
+    public S withHeightUndefined();
 
 }

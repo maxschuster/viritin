@@ -537,9 +537,11 @@ public class TypedSelect<T> extends CustomField implements FluentAbstractField {
     }
 
     @Override
-    public TypedSelect withStyleName(String style) {
-        setStyleName(style);
-        return this;
+    public TypedSelect withStyleName(String... styles) {
+        for (String style : styles) {
+            addStyleName(style);
+        }
+        return (TypedSelect) this;
     }
 
     @Override

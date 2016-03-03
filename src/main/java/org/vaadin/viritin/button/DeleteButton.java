@@ -115,8 +115,8 @@ public class DeleteButton extends ConfirmButton  {
     }
 
     @Override
-    public DeleteButton withStyleName(String style) {
-        return (DeleteButton) super.withStyleName(style);
+    public DeleteButton withStyleName(String... styles) {
+        return (DeleteButton) super.withStyleName(styles);
     }
 
     @Override

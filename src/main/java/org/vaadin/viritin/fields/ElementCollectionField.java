@@ -485,8 +485,8 @@ public class ElementCollectionField<ET> extends AbstractElementCollection<ET> {
     }
 
     @Override
-    public ElementCollectionField<ET> withStyleName(String style) {
-        return (ElementCollectionField<ET>) super.withStyleName(style);
+    public ElementCollectionField<ET> withStyleName(String... styles) {
+        return (ElementCollectionField<ET>) super.withStyleName(styles);
     }
 
     @Override

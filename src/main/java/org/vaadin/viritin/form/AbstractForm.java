@@ -651,8 +651,8 @@ public abstract class AbstractForm<T> extends FluentCustomComponent<AbstractForm
     }
 
     @Override
-    public AbstractForm<T> withStyleName(String style) {
-        return (AbstractForm<T>) super.withStyleName(style);
+    public AbstractForm<T> withStyleName(String... styles) {
+        return (AbstractForm<T>) super.withStyleName(styles);
     }
 
     @Override

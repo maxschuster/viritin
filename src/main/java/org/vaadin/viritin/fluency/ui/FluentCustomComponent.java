@@ -28,12 +28,12 @@ import java.util.Locale;
  * A {@link CustomComponent} complemented by fluent setters.
  * 
  * @author Max Schuster
- * @param <C> Fluent component type
+ * @param <S> Self-referential generic type
  * @see CustomComponent
  */
 @SuppressWarnings("unchecked")
-public abstract class FluentCustomComponent<C extends FluentCustomComponent<C>>
-        extends CustomComponent implements FluentAbstractComponent<C> {
+public abstract class FluentCustomComponent<S extends FluentCustomComponent<S>>
+        extends CustomComponent implements FluentAbstractComponent<S> {
 
     public FluentCustomComponent() {
         super();
@@ -46,195 +46,197 @@ public abstract class FluentCustomComponent<C extends FluentCustomComponent<C>>
     /* Fluent setters (FluentAbstractComponent): */
 
     @Override
-    public C withStyleName(String style, boolean add) {
+    public S withStyleName(String style, boolean add) {
         setStyleName(style, add);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withCaptionAsHtml(boolean captionAsHtml) {
+    public S withCaptionAsHtml(boolean captionAsHtml) {
         setCaptionAsHtml(captionAsHtml);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withLocale(Locale locale) {
+    public S withLocale(Locale locale) {
         setLocale(locale);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withImmediate(boolean immediate) {
+    public S withImmediate(boolean immediate) {
         setImmediate(immediate);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withDescription(String description) {
+    public S withDescription(String description) {
         setDescription(description);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withComponentError(ErrorMessage componentError) {
+    public S withComponentError(ErrorMessage componentError) {
         setComponentError(componentError);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withListener(Listener listener) {
+    public S withListener(Listener listener) {
         addListener(listener);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withData(Object data) {
+    public S withData(Object data) {
         setData(data);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withResponsive(boolean responsive) {
+    public S withResponsive(boolean responsive) {
         setResponsive(responsive);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withShortcutListener(ShortcutListener shortcut) {
+    public S withShortcutListener(ShortcutListener shortcut) {
         addShortcutListener(shortcut);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withCaption(String caption) {
+    public S withCaption(String caption) {
         setCaption(caption);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withEnabled(boolean enabled) {
+    public S withEnabled(boolean enabled) {
         setEnabled(enabled);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withIcon(Resource icon) {
+    public S withIcon(Resource icon) {
         setIcon(icon);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withId(String id) {
+    public S withId(String id) {
         setId(id);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withPrimaryStyleName(String style) {
+    public S withPrimaryStyleName(String style) {
         setPrimaryStyleName(style);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withReadOnly(boolean readOnly) {
+    public S withReadOnly(boolean readOnly) {
         setReadOnly(readOnly);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withStyleName(String style) {
-        setStyleName(style);
-        return (C) this;
+    public S withStyleName(String... styles) {
+        for (String style : styles) {
+            addStyleName(style);
+        }
+        return (S) this;
     }
 
     @Override
-    public C withVisible(boolean visible) {
+    public S withVisible(boolean visible) {
         setVisible(visible);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withAttachListener(AttachListener listener) {
+    public S withAttachListener(AttachListener listener) {
         addAttachListener(listener);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withDetachListener(DetachListener listener) {
+    public S withDetachListener(DetachListener listener) {
         addDetachListener(listener);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withErrorHandler(ErrorHandler errorHandler) {
+    public S withErrorHandler(ErrorHandler errorHandler) {
         setErrorHandler(errorHandler);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withContextClickListener(ContextClickEvent.ContextClickListener listener) {
+    public S withContextClickListener(ContextClickEvent.ContextClickListener listener) {
         addContextClickListener(listener);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withHeight(String height) {
+    public S withHeight(String height) {
         setHeight(height);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withHeight(float height, Unit unit) {
+    public S withHeight(float height, Unit unit) {
         setHeight(height, unit);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withWidth(String width) {
+    public S withWidth(String width) {
         setWidth(width);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withWidth(float width, Unit unit) {
+    public S withWidth(float width, Unit unit) {
         setWidth(width, unit);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withSizeFull() {
+    public S withSizeFull() {
         setSizeFull();
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withWidthFull() {
+    public S withWidthFull() {
         setWidth(100, Unit.PERCENTAGE);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withHeightFull() {
+    public S withHeightFull() {
         setHeight(100, Unit.PERCENTAGE);
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withSizeUndefined() {
+    public S withSizeUndefined() {
         setSizeUndefined();
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withWidthUndefined() {
+    public S withWidthUndefined() {
         setWidthUndefined();
-        return (C) this;
+        return (S) this;
     }
 
     @Override
-    public C withHeightUndefined() {
+    public S withHeightUndefined() {
         setHeightUndefined();
-        return (C) this;
+        return (S) this;
     }
     
 }

@@ -22,10 +22,10 @@ import com.vaadin.event.ContextClickEvent;
  * setters.
  *
  * @author Max Schuster
- * @param <C> Fluent component type
+ * @param <S> Self-referential generic type
  * @see ContextClickEvent.ContextClickNotifier
  */
-public interface FluentContextClickNotifier<C extends FluentContextClickNotifier<C>>
+public interface FluentContextClickNotifier<S extends FluentContextClickNotifier<S>>
         extends ContextClickEvent.ContextClickNotifier {
 
     /**
@@ -33,10 +33,10 @@ public interface FluentContextClickNotifier<C extends FluentContextClickNotifier
      * happens.
      *
      * @param listener the context click listener to add
-     * @return This component
+     * @return this (for method chaining)
      * @see
      * #addContextClickListener(com.vaadin.event.ContextClickEvent.ContextClickListener)
      */
-    public C withContextClickListener(ContextClickEvent.ContextClickListener listener);
+    public S withContextClickListener(ContextClickEvent.ContextClickListener listener);
 
 }

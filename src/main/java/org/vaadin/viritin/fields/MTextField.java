@@ -439,8 +439,10 @@ public class MTextField extends TextField implements EagerValidateable,
     }
 
     @Override
-    public MTextField withStyleName(String style) {
-        setStyleName(style);
+    public MTextField withStyleName(String... styles) {
+        for (String style : styles) {
+            addStyleName(style);
+        }
         return this;
     }
 

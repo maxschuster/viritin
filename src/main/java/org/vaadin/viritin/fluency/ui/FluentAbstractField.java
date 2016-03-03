@@ -23,14 +23,14 @@ import org.vaadin.viritin.fluency.data.FluentProperty;
  * A {@link AbstractField} complemented by fluent setters.
  *
  * @author Max Schuster
- * @param <C> Fluent component type
+ * @param <S> Self-referential generic type
  * @param <T> The type of values in the field, which might not be the same type
  * as that of the data source if converters are used
  * @see AbstractField
  */
-public interface FluentAbstractField<C extends AbstractField<T> & FluentAbstractField<C, T>, T> 
-        extends FluentAbstractComponent<C>, FluentField<C, T>, 
-        FluentProperty.FluentReadOnlyStatusChangeNotifier<C> {
+public interface FluentAbstractField<S extends AbstractField<T> & FluentAbstractField<S, T>, T> 
+        extends FluentAbstractComponent<S>, FluentField<S, T>, 
+        FluentProperty.FluentReadOnlyStatusChangeNotifier<S> {
 
     /**
      * Retrieves a converter for the field from the converter factory defined
@@ -39,10 +39,10 @@ public interface FluentAbstractField<C extends AbstractField<T> & FluentAbstract
      *
      * @param datamodelType The type of the data model that we want to be able
      * to convert from
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractField#setConverter(java.lang.Class)
      */
-    public C withConverter(Class<?> datamodelType);
+    public S withConverter(Class<?> datamodelType);
 
     /**
      * Sets the value of the field using a value of the data source type. The
@@ -51,10 +51,10 @@ public interface FluentAbstractField<C extends AbstractField<T> & FluentAbstract
      * {@link #setValue(Object)} is called.
      *
      * @param value The value to set. Must be the same type as the data source.
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractField#setConvertedValue(java.lang.Object)
      */
-    public C withConvertedValue(Object value);
+    public S withConvertedValue(Object value);
 
     /**
      * Sets the error that is shown if the field value cannot be converted to
@@ -64,10 +64,10 @@ public interface FluentAbstractField<C extends AbstractField<T> & FluentAbstract
      *
      * @param valueConversionError Message to be shown when conversion of the
      * value fails
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractField#setConversionError(java.lang.String)
      */
-    public C withConversionError(String valueConversionError);
+    public S withConversionError(String valueConversionError);
 
     /**
      * Enable or disable automatic, visible validation.
@@ -79,20 +79,20 @@ public interface FluentAbstractField<C extends AbstractField<T> & FluentAbstract
      * validation in their own code.
      *
      * @param validateAutomatically True, if automatic validation is enabled.
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractField#setValidationVisible(boolean)
      */
-    public C withValidationVisible(boolean validateAutomatically);
+    public S withValidationVisible(boolean validateAutomatically);
 
     /**
      * Sets the current buffered source exception.
      *
      * @param currentBufferedSourceException
-     * @return This component
+     * @return this (for method chaining)
      * @see
      * AbstractField#setCurrentBufferedSourceException(com.vaadin.data.Buffered.SourceException)
      */
-    public C withCurrentBufferedSourceException(SourceException currentBufferedSourceException);
+    public S withCurrentBufferedSourceException(SourceException currentBufferedSourceException);
 
     /**
      * Sets the converter used to convert the field value to property data
@@ -100,9 +100,9 @@ public interface FluentAbstractField<C extends AbstractField<T> & FluentAbstract
      * field type.
      *
      * @param converter The new converter to use.
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractField#setConverter(com.vaadin.data.util.converter.Converter)
      */
-    public C withConverter(Converter<T, ?> converter);
+    public S withConverter(Converter<T, ?> converter);
 
 }

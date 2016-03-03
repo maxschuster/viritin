@@ -22,10 +22,10 @@ import com.vaadin.data.Validator;
  * A {@link Validatable} complemented by fluent setters.
  *
  * @author Max Schuster
- * @param <C> Fluent component type
+ * @param <S> Self-referential generic type
  * @see Validatable
  */
-public interface FluentValidatable<C extends FluentValidatable<C>>
+public interface FluentValidatable<S extends FluentValidatable<S>>
         extends Validatable {
 
     /**
@@ -35,10 +35,10 @@ public interface FluentValidatable<C extends FluentValidatable<C>>
      * method is called. This usually happens when the object's value changes.
      *
      * @param validator the new validator
-     * @return This component
+     * @return this (for method chaining)
      * @see #addValidator(com.vaadin.data.Validator)
      */
-    public C withValidator(Validator validator);
+    public S withValidator(Validator validator);
 
     /**
      * Should the validabtable object accept invalid values. Supporting this
@@ -48,10 +48,10 @@ public interface FluentValidatable<C extends FluentValidatable<C>>
      * @param invalidValueAllowed 
      * @throws UnsupportedOperationException if the setInvalidAllowed is not
      * supported.
-     * @return This component
+     * @return this (for method chaining)
      * @see #setInvalidAllowed(boolean)
      */
-    public C withInvalidAllowed(boolean invalidValueAllowed)
+    public S withInvalidAllowed(boolean invalidValueAllowed)
             throws UnsupportedOperationException;
 
 }

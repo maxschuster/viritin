@@ -21,19 +21,17 @@ import com.vaadin.event.FieldEvents;
  * A {@link FieldEvents} complemented by fluent setters.
  *
  * @author Max Schuster
- * @param <C> Fluent component type
  * @see FieldEvents
  */
-public interface FluentFieldEvents<C extends FluentFieldEvents<C>>
-        extends FieldEvents {
+public interface FluentFieldEvents extends FieldEvents {
 
     /**
      * A {@link FocusNotifier} complemented by fluent setters.
      *
-     * @param <C> Fluent component type
+     * @param <S> Self-referential generic type
      * @see FocusNotifier
      */
-    public interface FluentFocusNotifier<C extends FluentFocusNotifier<C>>
+    public interface FluentFocusNotifier<S extends FluentFocusNotifier<S>>
             extends FocusNotifier {
 
         /**
@@ -41,20 +39,20 @@ public interface FluentFieldEvents<C extends FluentFieldEvents<C>>
          * when a <code>Field</code> receives keyboard focus.
          *
          * @param listener The focus listener to add
-         * @return This component
+         * @return this (for method chaining)
          * @see #addFocusListener(com.vaadin.event.FieldEvents.FocusListener)
          */
-        public C withFocusListener(FocusListener listener);
+        public S withFocusListener(FocusListener listener);
 
     }
 
     /**
      * A {@link BlurNotifier} complemented by fluent setters.
      *
-     * @param <C> Fluent component type
+     * @param <S> Self-referential generic type
      * @see BlurNotifier
      */
-    public interface FluentBlurNotifier<C extends FluentBlurNotifier<C>>
+    public interface FluentBlurNotifier<S extends FluentBlurNotifier<S>>
             extends BlurNotifier {
 
         /**
@@ -62,20 +60,20 @@ public interface FluentFieldEvents<C extends FluentFieldEvents<C>>
          * when a <code>Field</code> loses keyboard focus.
          *
          * @param listener The blur listener to add
-         * @return This component
+         * @return this (for method chaining)
          * @see #addBlurListener(com.vaadin.event.FieldEvents.BlurListener)
          */
-        public C withBlurListener(BlurListener listener);
+        public S withBlurListener(BlurListener listener);
 
     }
 
     /**
      * A {@link TextChangeNotifier} complemented by fluent setters.
      *
-     * @param <C> Fluent component type
+     * @param <S> Self-referential generic type
      * @see TextChangeNotifier
      */
-    public interface FluentTextChangeNotifier<C extends FluentTextChangeNotifier<C>>
+    public interface FluentTextChangeNotifier<S extends FluentTextChangeNotifier<S>>
             extends TextChangeNotifier {
 
         /**
@@ -83,11 +81,11 @@ public interface FluentFieldEvents<C extends FluentFieldEvents<C>>
          * fired when the text of the <code>Field</code> changes.
          *
          * @param listener The text change listener to add
-         * @return This component
+         * @return this (for method chaining)
          * @see
          * #addTextChangeListener(com.vaadin.event.FieldEvents.TextChangeListener)
          */
-        public C withTextChangeListener(TextChangeListener listener);
+        public S withTextChangeListener(TextChangeListener listener);
 
     }
 

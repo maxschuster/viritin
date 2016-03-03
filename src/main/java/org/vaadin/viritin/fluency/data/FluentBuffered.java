@@ -21,10 +21,11 @@ import com.vaadin.data.Buffered;
  * A {@link Buffered} complemented by fluent setters.
  *
  * @author Max Schuster
- * @param <C> Fluent component type
+ * @param <S> Self-referential generic type
  * @see Buffered
  */
-public interface FluentBuffered<C extends FluentBuffered<C>> extends Buffered {
+public interface FluentBuffered<S extends FluentBuffered<S>>
+        extends Buffered {
 
     /**
      * Sets the buffered mode to the specified status.
@@ -39,9 +40,9 @@ public interface FluentBuffered<C extends FluentBuffered<C>> extends Buffered {
      *
      * @param buffered true if buffered mode should be turned on, false
      * otherwise
-     * @return This component
+     * @return this (for method chaining)
      * @see #setBuffered(boolean) 
      */
-    public C withBuffered(boolean buffered);
+    public S withBuffered(boolean buffered);
 
 }

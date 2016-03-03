@@ -461,8 +461,8 @@ public class ElementCollectionTable<ET> extends AbstractElementCollection<ET> {
     }
 
     @Override
-    public ElementCollectionTable<ET> withStyleName(String style) {
-        return (ElementCollectionTable<ET>) super.withStyleName(style);
+    public ElementCollectionTable<ET> withStyleName(String... styles) {
+        return (ElementCollectionTable<ET>) super.withStyleName(styles);
     }
 
     @Override

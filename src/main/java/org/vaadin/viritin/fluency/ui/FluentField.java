@@ -23,33 +23,33 @@ import org.vaadin.viritin.fluency.data.FluentProperty;
  * A {@link Field} complemented by fluent setters.
  * 
  * @author Max Schuster
- * @param <C> Fluent component type
+ * @param <S> Fluent component type
  * @param <T> The type of values in the field, which might not be the same type
  * as that of the data source if converters are used
  * @see Field
  */
-public interface FluentField<C extends FluentField<C, T>, T> extends Field<T>,
-        FluentComponent<C>, FluentBufferedValidatable<C>, 
-        FluentComponent.FluentFocusable<C>, 
-        FluentProperty<C, T>, FluentProperty.FluentValueChangeNotifier<C>,
-        FluentProperty.FluentEditor<C> {
+public interface FluentField<S extends FluentField<S, T>, T> extends Field<T>,
+        FluentComponent<S>, FluentBufferedValidatable<S>, 
+        FluentComponent.FluentFocusable<S>, 
+        FluentProperty<S, T>, FluentProperty.FluentValueChangeNotifier<S>,
+        FluentProperty.FluentEditor<S> {
 
     /**
      * Sets the field required. Required fields must filled by the user.
      *
      * @param required Is the field required.
-     * @return This component
+     * @return this (for method chaining)
      * @see #setRequired(boolean)
      */
-    public C withRequired(boolean required);
+    public S withRequired(boolean required);
 
     /**
      * Sets the error message to be displayed if a required field is empty.
      *
      * @param requiredMessage Error message.
-     * @return This component
+     * @return this (for method chaining)
      * @see #setRequiredError(java.lang.String)
      */
-    public C withRequiredError(String requiredMessage);
+    public S withRequiredError(String requiredMessage);
 
 }

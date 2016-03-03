@@ -188,8 +188,8 @@ public class DownloadButton extends MButton {
     }
 
     @Override
-    public DownloadButton withStyleName(String style) {
-        return (DownloadButton) super.withStyleName(style);
+    public DownloadButton withStyleName(String... styles) {
+        return (DownloadButton) super.withStyleName(styles);
     }
 
     @Override

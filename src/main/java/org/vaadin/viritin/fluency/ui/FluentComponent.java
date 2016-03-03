@@ -23,11 +23,11 @@ import org.vaadin.viritin.fluency.server.FluentSizeable;
  * A {@link Component} complemented by fluent setters.
  *
  * @author Max Schuster
- * @param <C> Fluent component type
+ * @param <S> Self-referential generic type
  * @see Component
  */
-public interface FluentComponent<C extends FluentComponent<C>> extends 
-        Component, FluentSizeable<C> {
+public interface FluentComponent<S extends FluentComponent<S>> extends 
+        Component, FluentSizeable<S> {
 
     /**
      * Sets the caption of the component.
@@ -79,10 +79,10 @@ public interface FluentComponent<C extends FluentComponent<C>> extends
      *
      * @param caption the new caption for the component. If the caption is
      * {@code null}, no caption is shown and it does not normally take any space
-     * @return This component
+     * @return this (for method chaining)
      * @see #setCaption(java.lang.String)
      */
-    public C withCaption(String caption);
+    public S withCaption(String caption);
 
     /**
      * Enables or disables the component. The user can not interact with
@@ -108,10 +108,10 @@ public interface FluentComponent<C extends FluentComponent<C>> extends
      *
      * @param enabled a boolean value specifying if the component should be
      * enabled or not
-     * @return This component
+     * @return this (for method chaining)
      * @see #setEnabled(boolean)
      */
-    public C withEnabled(boolean enabled);
+    public S withEnabled(boolean enabled);
 
     /**
      * Sets the icon of the component.
@@ -164,11 +164,11 @@ public interface FluentComponent<C extends FluentComponent<C>> extends
      *
      * @param icon the icon of the component. If null, no icon is shown and it
      * does not normally take any space.
-     * @return This component
+     * @return this (for method chaining)
      * @see #setIcon(com.vaadin.server.Resource)
      * @see #setCaption(String)
      */
-    public C withIcon(Resource icon);
+    public S withIcon(Resource icon);
 
     /**
      * Adds an unique id for component that is used in the client-side for
@@ -179,7 +179,7 @@ public interface FluentComponent<C extends FluentComponent<C>> extends
      * @return
      * @see #setId(java.lang.String)
      */
-    public C withId(String id);
+    public S withId(String id);
 
     /**
      * Changes the primary style name of the component.
@@ -199,10 +199,10 @@ public interface FluentComponent<C extends FluentComponent<C>> extends
      * </p>
      *
      * @param style The new primary style name
-     * @return This component
+     * @return this (for method chaining)
      * @see #setPrimaryStyleName(java.lang.String)
      */
-    public C withPrimaryStyleName(String style);
+    public S withPrimaryStyleName(String style);
 
     /**
      * Sets the read-only mode of the component to the specified mode. The user
@@ -226,10 +226,10 @@ public interface FluentComponent<C extends FluentComponent<C>> extends
      *
      * @param readOnly a boolean value specifying whether the component is put
      * read-only mode or not
-     * @return This component
+     * @return this (for method chaining)
      * @see #setReadOnly(boolean)
      */
-    public C withReadOnly(boolean readOnly);
+    public S withReadOnly(boolean readOnly);
 
     /**
      * Sets one or more user-defined style names of the component, replacing any
@@ -274,15 +274,15 @@ public interface FluentComponent<C extends FluentComponent<C>> extends
      * This method will trigger a {@link RepaintRequestEvent}.
      * </p>
      *
-     * @param style the new style or styles of the component as a
+     * @param styles the new style or styles of the component as a
      * space-separated list
-     * @return This component
+     * @return this (for method chaining)
      * @see #getStyleName()
      * @see #addStyleName(String)
      * @see #removeStyleName(String)
      * @see #setStyleName(java.lang.String)
      */
-    public C withStyleName(String style);
+    public S withStyleName(String... styles);
 
     /**
      * Sets the visibility of the component.
@@ -309,11 +309,11 @@ public interface FluentComponent<C extends FluentComponent<C>> extends
      *
      * @param visible the boolean value specifying if the component should be
      * visible after the call or not.
-     * @return This Component
+     * @return this (for method chaining)
      * @see #setVisible(boolean)
      * @see #isVisible()
      */
-    public C withVisible(boolean visible);
+    public S withVisible(boolean visible);
 
     /**
      * Registers a new (generic) component event listener for the component.
@@ -362,11 +362,11 @@ public interface FluentComponent<C extends FluentComponent<C>> extends
      * </pre>
      *
      * @param listener the new Listener to be registered.
-     * @return This component
+     * @return this (for method chaining)
      * @see Component.Event
      * @see #addListener(com.vaadin.ui.Component.Listener)
      */
-    public C withListener(Component.Listener listener);
+    public S withListener(Component.Listener listener);
 
     /**
      * A {@link Focusable} complemented by fluent setters.
@@ -435,7 +435,7 @@ public interface FluentComponent<C extends FluentComponent<C>> extends
          * start from 1. Zero means that default tab order should be used. A
          * negative value means that the field should not be included in the
          * tabbing sequence.
-         * @return This component
+         * @return this (for method chaining)
          * @see #setTabIndex(int)
          */
         public C withTabIndex(int tabIndex);

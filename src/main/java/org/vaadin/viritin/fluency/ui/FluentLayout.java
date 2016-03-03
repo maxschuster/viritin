@@ -24,20 +24,20 @@ import com.vaadin.ui.Layout;
  * A {@link Layout} complemented by fluent setters.
  * 
  * @author Max Schuster
- * @param <C> Fluent component type
+ * @param <S> Self-referential generic type
  * @see Layout
  */
-public interface FluentLayout<C extends FluentLayout<C>>
-        extends Layout, FluentComponentContainer<C> {
+public interface FluentLayout<S extends FluentLayout<S>>
+        extends Layout, FluentComponentContainer<S> {
 
     /**
      * A {@link AlignmentHandler} complemented by fluent setters.
      * 
-     * @param <C> Fluent component type
+     * @param <S> Self-referential generic type
      * @see AlignmentHandler
      */
-    public interface FluentAlignmentHandler<C extends FluentLayout<C>>
-            extends AlignmentHandler, FluentLayout<C> {
+    public interface FluentAlignmentHandler<S extends FluentLayout<S>>
+            extends AlignmentHandler, FluentLayout<S> {
 
         /**
          * Set alignment for one contained component in this layout. Use
@@ -49,10 +49,10 @@ public interface FluentLayout<C extends FluentLayout<C>>
          *
          * @param childComponent the component to align within it's layout cell.
          * @param alignment the Alignment value to be set
-         * @return This component
+         * @return this (for method chaining)
          * @see #setComponentAlignment(com.vaadin.ui.Component, com.vaadin.ui.Alignment) 
          */
-        public C withComponentAlignment(Component childComponent,
+        public S withComponentAlignment(Component childComponent,
                 Alignment alignment);
 
         /**
@@ -60,30 +60,30 @@ public interface FluentLayout<C extends FluentLayout<C>>
          * default is {@link Alignment#TOP_LEFT}.
          *
          * @param defaultComponentAlignment The new default alignment
-         * @return This component
+         * @return this (for method chaining)
          * @see #setDefaultComponentAlignment(com.vaadin.ui.Alignment) 
          */
-        public C withDefaultComponentAlignment(
+        public S withDefaultComponentAlignment(
                 Alignment defaultComponentAlignment);
     
         /**
          * 
          * @param component the component to align within it's layout cell.
          * @param alignment the Alignment value to be set
-         * @return This component
+         * @return this (for method chaining)
          */
-        public C withComponent(Component component, Alignment alignment);
+        public S withComponent(Component component, Alignment alignment);
 
     }
 
     /**
      * A {@link SpacingHandler} complemented by fluent setters.
      * 
-     * @param <C> Fluent component type
+     * @param <S> Self-referential generic type
      * @see SpacingHandler
      */
-    public interface FluentSpacingHandler<C extends FluentLayout<C>> 
-            extends SpacingHandler, FluentLayout<C> {
+    public interface FluentSpacingHandler<S extends FluentLayout<S>> 
+            extends SpacingHandler, FluentLayout<S> {
 
         /**
          * Enable spacing between child components within this layout.
@@ -103,21 +103,21 @@ public interface FluentLayout<C extends FluentLayout<C>>
          *
          * @param enabled true if spacing should be turned on, false if it
          * should be turned off
-         * @return This component
+         * @return this (for method chaining)
          * @see #setSpacing(boolean) 
          */
-        public C withSpacing(boolean enabled);
+        public S withSpacing(boolean enabled);
 
     }
 
     /**
      * A {@link MarginHandler} complemented by fluent setters.
      * 
-     * @param <C> Fluent component type
+     * @param <S> Self-referential generic type
      * @see MarginHandler
      */
-    public interface FluentMarginHandler<C extends FluentLayout<C>>
-            extends MarginHandler, FluentLayout<C> {
+    public interface FluentMarginHandler<S extends FluentLayout<S>>
+            extends MarginHandler, FluentLayout<S> {
 
         /**
          * Enable layout margins. Affects all four sides of the layout. This
@@ -127,10 +127,10 @@ public interface FluentLayout<C extends FluentLayout<C>>
          *
          * @param enabled true if margins should be enabled on all sides, false
          * to disable all margins
-         * @return This component
+         * @return this (for method chaining)
          * @see #setMargin(boolean) 
          */
-        public C withMargin(boolean enabled);
+        public S withMargin(boolean enabled);
 
         /**
          * Enable margins for this layout.
@@ -148,10 +148,10 @@ public interface FluentLayout<C extends FluentLayout<C>>
          * </p>
          *
          * @param marginInfo MarginInfo object containing the new margins.
-         * @return This component
+         * @return this (for method chaining)
          * @see #setMargin(com.vaadin.shared.ui.MarginInfo) 
          */
-        public C withMargin(MarginInfo marginInfo);
+        public S withMargin(MarginInfo marginInfo);
     }
 
 }

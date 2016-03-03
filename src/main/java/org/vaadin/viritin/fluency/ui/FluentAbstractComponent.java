@@ -26,12 +26,12 @@ import org.vaadin.viritin.fluency.event.FluentContextClickNotifier;
  * A {@link AbstractComponent} complemented by fluent setters.
  *
  * @author Max Schuster
- * @param <C> Fluent component type
+ * @param <S> Self-referential generic type
  * @see AbstractComponent
  */
-public interface FluentAbstractComponent<C extends AbstractComponent & FluentAbstractComponent<C>> 
-        extends FluentComponent<C>, FluentClientConnector<C>, 
-        FluentContextClickNotifier<C> {
+public interface FluentAbstractComponent<S extends AbstractComponent & FluentAbstractComponent<S>> 
+        extends FluentComponent<S>, FluentClientConnector<S>, 
+        FluentContextClickNotifier<S> {
 
     /**
      * Adds or removes a style name. Multiple styles can be specified as a
@@ -47,12 +47,12 @@ public interface FluentAbstractComponent<C extends AbstractComponent & FluentAbs
      * @param style the style name to be added or removed
      * @param add <code>true</code> to add the given style, <code>false</code>
      * to remove it
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractComponent#setStyleName(java.lang.String, boolean)
      * @see #addStyleName(String)
      * @see #removeStyleName(String)
      */
-    public C withStyleName(String style, boolean add);
+    public S withStyleName(String style, boolean add);
 
     /**
      * Sets whether the caption is rendered as HTML.
@@ -65,10 +65,10 @@ public interface FluentAbstractComponent<C extends AbstractComponent & FluentAbs
      *
      * @param captionAsHtml true if the captions are rendered as HTML, false if
      * rendered as plain text
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractComponent#setCaptionAsHtml(boolean)
      */
-    public C withCaptionAsHtml(boolean captionAsHtml);
+    public S withCaptionAsHtml(boolean captionAsHtml);
 
     /**
      * Sets the locale of this component.
@@ -86,20 +86,20 @@ public interface FluentAbstractComponent<C extends AbstractComponent & FluentAbs
      * </pre>
      *
      * @param locale the locale to become this component's locale.
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractComponent#setLocale(java.util.Locale)
      */
-    public C withLocale(Locale locale);
+    public S withLocale(Locale locale);
 
     /**
      * Sets the component's immediate mode to the specified status.
      *
      * @param immediate the boolean value specifying if the component should be
      * in the immediate mode after the call.
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractComponent#setImmediate(boolean)
      */
-    public C withImmediate(boolean immediate);
+    public S withImmediate(boolean immediate);
 
     /**
      * Sets the component's description. See {@link #getDescription()} for more
@@ -111,10 +111,10 @@ public interface FluentAbstractComponent<C extends AbstractComponent & FluentAbs
      * HTML injection and possibly XSS vulnerabilities.
      *
      * @param description the new description string for the component.
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractComponent#setDescription(java.lang.String)
      */
-    public C withDescription(String description);
+    public S withDescription(String description);
 
     /**
      * Sets the component's error message. The message may contain certain XML
@@ -123,38 +123,39 @@ public interface FluentAbstractComponent<C extends AbstractComponent & FluentAbs
      * @link Component.ErrorMessage#ErrorMessage(String, int)
      *
      * @param componentError the new <code>ErrorMessage</code> of the component.
-     * @return This component @see
+     * @return this (for method chaining)
+     * @see
      * AbstractComponent#setComponentError(com.vaadin.server.ErrorMessage)
      */
-    public C withComponentError(ErrorMessage componentError);
+    public S withComponentError(ErrorMessage componentError);
 
     /**
      * Sets the data object, that can be used for any application specific data.
      * The component does not use or modify this data.
      *
      * @param data the Application specific data.
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractComponent#setData(java.lang.Object)
      */
-    public C withData(Object data);
+    public S withData(Object data);
 
     /**
      * Toggles responsiveness of this component.
      *
      * @param responsive boolean enables responsiveness, false disables
-     * @return This component
+     * @return this (for method chaining)
      * @see AbstractComponent#setResponsive(boolean)
      */
-    public C withResponsive(boolean responsive);
+    public S withResponsive(boolean responsive);
 
     /**
      * Registers a new shortcut listener for the component.
      *
      * @param shortcut the new Listener to be registered.
-     * @return This component
+     * @return this (for method chaining)
      * @see
      * AbstractComponent#addShortcutListener(com.vaadin.event.ShortcutListener)
      */
-    public C withShortcutListener(ShortcutListener shortcut);
+    public S withShortcutListener(ShortcutListener shortcut);
 
 }

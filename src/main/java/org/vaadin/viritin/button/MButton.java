@@ -194,8 +194,10 @@ public class MButton extends Button implements FluentAbstractComponent {
     }
 
     @Override
-    public MButton withStyleName(String style) {
-        setStyleName(style);
+    public MButton withStyleName(String... styles) {
+        for (String style : styles) {
+            addStyleName(style);
+        }
         return this;
     }
 
